@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <title>康复包详情</title>
+    <link href="../../css/common/wyn.css" rel="stylesheet" type="text/css">
+    <link href="../../css/common/common.css" rel="stylesheet" type="text/css">
+    <link href="../../css/common/package.css" rel="stylesheet" type="text/css">
+    <script src="../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="../../js/common/vue.js" type="text/javascript"></script>
+    <script>
+        var date = Date.now();
+        var str = '';
+        str += '<script src="../../js/common/wyn-plugin-library.js?' + date + '" type="text/javascript"><\/script>'
+        str += '<script src="../../js/common/common.js?' + date + '" type="text/javascript"><\/script>'
+        $('head').append(str);
+        wyn.init.page()
+    </script>
+</head>
+<body>
+<div class="package-details">
+    <!--基本信息-->
+    <div class="details-item basic-info">
+        <h3><img src="../../images/common/icon_member_template_mess@2x.png"><s>基本信息</s></h3>
+        <ul>
+            <li>模版名称：<span v-text="details.packages.subject">康复模版名称</span></li>
+            <li>康复介绍：<span v-text="details.packages.objective">康复模版名称康复模版名称康复模版名称康复模版名称康复模版名称康复模版名称康复模版名称</span></li>
+            <li>注意事项：<span v-text="details.packages.notice">注意事项</span></li>
+            <li>康复时长：<span v-text="details.packages.days+'天'"></span></li>
+            <li>所属病种：<span v-text="details.packages.disease_name">所属病种</span></li>
+            <li>购买时间：<span v-text="details.packages.create_name">购买时间</span></li>
+            <li>康复计划开始日期：<span v-text="details.packages.start_date">开始时间</span></li>
+            <li>康复计划结束日期：<span v-text="details.packages.end_date">结束时间</span></li>
+        </ul>
+    </div>
+    <!--包含服务-->
+    <div class="details-item state">
+        <h3 class="bor-0"><img src="../../images/common/icon_member_template_message@2x.png">
+            <s>服务包状态</s>
+            <span style="position: absolute; line-height: .44rem;right: .12rem; color: #474747"
+                  v-text="details.packages.range_str"></span>
+        </h3>
+    </div>
+    <!--包含服务-->
+    <div class="details-item services">
+        <h3><img src="../../images/common/icon_member_template_fw@2x.png"><s>包含服务</s></h3>
+        <ul>
+            <li>
+                <img src="../../images/common/icon_member_kfbxq_nav_twzx@2x.png">
+                <p>图文咨询</p>
+                <s><i>{{details.packages.service_text}}</i>次</s>
+            </li>
+            <li>
+                <img src="../../images/common/icon_member_kfbxq_nav_dhzx@2x.png">
+                <p>电话咨询</p>
+                <s><i>{{details.packages.service_voice}}</i>次</s>
+            </li>
+            <li>
+                <img src="../../images/common/icon_member_kfbxq_nav_spzx@2x.png">
+                <p>视频咨询</p>
+                <s><i>{{details.packages.service_video}}</i>次</s>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <img src="../../images/common/icon_member_kfbxq_nav_xdpg@2x.png">
+                <p>心电评估</p>
+                <s><i>{{details.packages.service_ecg}}</i>次</s>
+            </li>
+            <li>
+                <img src="../../images/common/icon_member_kfbxq_nav_zhpg@2x.png">
+                <p>综合评估</p>
+                <s><i>{{details.packages.service_assess}}</i>次</s>
+            </li>
+            <li>
+            </li>
+        </ul>
+    </div>
+    <!--包含设备-->
+    <div class="details-item device">
+        <h3><img src="../../images/common/icon_member_kfbxq_nav_sb@2x.png"><s>包含设备</s></h3>
+        <ul>
+            <li v-for="item in details.packages.device">
+                <div class="device-img">
+                    <img v-if="!!item.img" :src="item.img">
+                    <img v-else style='width: .56rem; display: block; margin: auto;margin-top: .12rem'
+                         :src="'../../images/common/icon_member_template_equip_normal@2x.png'">
+                </div>
+                <div class="device-text">
+                    <p>名称: {{item.device_name}}</p>
+                    <!--<p>类型:{{item.type_name}}</p>-->
+                    <span>型号：{{item.model}}</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--服务内容-->
+    <div class="details-item service-content">
+        <h3><img src="../../images/common/icon_member_template_project@2x.png"><s>服务内容</s></h3>
+
+        <div style="font-size: .16rem" class="service-content-item" v-for="item in details.project">
+            <!--药品项目-->
+            <div class="drug service-content-item-box" :class="{height48 :drugUnfold}" v-if="item.type=='drug'">
+                <h4 @click="drugUnfold=!drugUnfold" :class="{unfold :drugUnfold}" class="icon-arrows-top icon-go">
+                    用药提醒（{{item.content.length}}类药品）</h4>
+                <div class="drug-item service-content-item-box-item" v-for="items in item.content">
+                    <div class="img-box">
+                        <img v-if="!!items.img" :src="items.img"/>
+                        <img v-else src="../../images/common/icon_doc_template_project_medicine_normal@2x.png"/>
+                    </div>
+                    <div class="img-box-right">
+                        <h5>{{items.name}}</h5>
+                        <p>{{items.drug_spec}}/{{items.units}}&nbsp;&nbsp;&nbsp;{{items.adminitration}}</p>
+                        <span class="frequency">用药频次 :&nbsp;&nbsp;{{items.frequency |week}}</span>
+                        <ul class="drug-time webkitBox">
+                            <li>
+                                <span>用药时间 :</span>
+                                <s style="display: block;opacity: 0"><img width="2px"
+                                                                          src="../../images/common/rectangle_5@2x.png"></s>
+                                <span>用药数量 :</span>
+                            </li>
+                            <li v-for="(time,index) in items.dosage">
+                                <span>{{items.perform_time[index]}}</span>
+                                <s style="display: block"><img width="2px" src="../../images/common/rectangle_5@2x.png"></s>
+                                <span>{{time}}<br>({{items.units}})</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--运动项目-->
+            <div class="service-content-item-box sport" :class="{height48 :sportsUnfold}" v-if="item.type=='sport'">
+                <h4 @click="sportsUnfold=!sportsUnfold" :class="{unfold :sportsUnfold}" class="icon-arrows-top icon-go">
+                    运动训练（{{item.content.length}}个项目）</h4>
+                <div class="drug-item service-content-item-box-item" v-for="items in item.content">
+                    <div class="img-box">
+                        <!--有氧运动-->
+                        <span v-if="items.sports_type=='有氧运动'">
+                            <img v-if="items.sports_tag=='步行'"
+                                 src="../../images/common/icon_ehabilitation_template_buxing@2x.png"/>
+                            <img v-if="items.sports_tag=='慢跑'"
+                                 src="../../images/common/icon_ehabilitation_template_manpao@2x.png"/>
+                            <img v-if="items.sports_tag=='快跑'"
+                                 src="../../images/common/icon_ehabilitation_template_kp@2x.png"/>
+                            <img v-if="items.sports_tag=='健身操'"
+                                 src="../../images/common/icon_ehabilitation_template_ymnastics@2x.png"/>
+                            <img v-if="items.sports_tag=='游泳'"
+                                 src="../../images/common/icon_ehabilitation_template_swiming@2x.png"/>
+                            <img v-if="items.sports_tag=='踏车'"
+                                 src="../../images/common/icon_ehabilitation_template_bicycle@2x.png"/>
+                            <img v-if="items.sports_tag=='跑步机'"
+                                 src="../../images/common/icon_ehabilitation_template_readmill@2x.png"/>
+                            <img v-if="items.sports_tag=='跳绳'"
+                                 src="../../images/common/icon_ehabilitation_template_tiaosheng@2x.png"/>
+                            <img v-if="items.sports_tag=='球类运动'"
+                                 src="../../images/common/icon_ehabilitation_template_ball@2x.png"/>
+                            <img v-if="items.sports_tag=='间歇性高度'"
+                                 src="../../images/common/icon_ehabilitation_template_jxgqd@2x.png"/>
+                        </span>
+
+                        <!--抗阻运动-->
+                        <span v-if="items.sports_type=='抗阻运动'">
+                            <img v-if="items.sports_tag=='弹力带操'"
+                                 src="../../images/common/icon_ehabilitation_template_tanlidaicao@2x.png"/>
+                            <img v-if="items.sports_tag=='弹力管操'"
+                                 src="../../images/common/icon_ehabilitation_template_lastic_band@2x.png"/>
+                            <img v-if="items.sports_tag=='俯卧撑'"
+                                 src="../../images/common/icon_ehabilitation_template_push_up@2x.png"/>
+                            <img v-if="items.sports_tag=='哑铃'"
+                                 src="../../images/common/icon_ehabilitation_template_arbell@2x.png"/>
+                            <img v-if="items.sports_tag=='杠铃'"
+                                 src="../../images/common/icon_ehabilitation_template_gangling@2x.png"/>
+                            <img v-if="items.sports_tag=='健身器材'"
+                                 src="../../images/common/icon_ehabilitation_template_jianshenqixie@2x.png"/>
+                        </span>
+
+                        <!--平衡训练-->
+                        <img v-if="items.sports_type=='平衡训练'"
+                             src="../../images/common/icon_ehabilitation_template_balance@2x.png"/>
+
+                        <!--柔韧性训练-->
+                        <img v-if="items.sports_type=='柔韧性训练'"
+                             src="../../images/common/icon_ehabilitation_template_lexible@2x.png"/>
+                    </div>
+                    <div class="img-box-right">
+                        <h5>{{items.sports_type}} <span v-if="!!items.sports_tag">({{items.sports_tag}})</span></h5>
+                        <p v-if="!!items.video_name">指导视频 :&nbsp;&nbsp;&nbsp;{{items.video_name}}</p>
+                        <p v-else></p>
+                        <ul>
+                            <li>设备类型 ：&nbsp;&nbsp;{{items.device_type}}</li>
+                            <li>运动频次 ：&nbsp;&nbsp;{{items.frequency |week}}</li>
+                            <li>运动时间 ：&nbsp;&nbsp;{{items.sports_time}}</li>
+                            <li>运动时长 ：&nbsp;&nbsp;{{items.sports_last}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--体征测量-->
+            <div class="service-content-item-box measure" :class="{height48 :measureUnfold}"
+                 v-if="item.type=='measure'">
+                <h4 @click="measureUnfold=!measureUnfold" :class="{unfold :measureUnfold}"
+                    class="icon-arrows-top icon-go">
+                    体征测量（{{item.content.length}}个项目）</h4>
+                <div class="drug-item service-content-item-box-item" v-for="items in item.content">
+                    <div class="img-box">
+                        <img v-if="items.measure_type=='1'"
+                             src="../../images/common/icon_ehabilitation_template_blood_pressure@2x.png"/>
+                        <img v-if="items.measure_type=='5'"
+                             src="../../images/common/icon_ehabilitation_template_weight@2x.png"/>
+                        <img v-if="items.measure_type=='2' || items.measure_type=='8'"
+                             src="../../images/common/icon_ehabilitation_template_heart_rate@2x.png"/>
+                    </div>
+                    <div class="img-box-right">
+                        <h5>{{measureList[parseInt(items.measure_type)-1]}}</h5>
+                        <ul style="margin-top: .04rem;" class="sports">
+                            <li>设备类型 ：&nbsp;&nbsp;{{items.device_type}}</li>
+                            <li>测量频次 ：&nbsp;&nbsp;{{items.frequency |week}}</li>
+                            <li>测量时间 ：&nbsp;&nbsp;{{items.perform_time.join('、')}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--综合评估-->
+            <div class="service-content-item-box assess" v-if="item.type=='assess'">
+                <h4>综合评估（首次评估：康复包生效{{item.content[0].day}}天后）</h4>
+            </div>
+        </div>
+    </div>
+    <ul class="buy-btn">
+        <p style="padding-right: .12rem;">总费用：<span>{{details.packages.amount}}元</span></p>
+    </ul>
+</div>
+</body>
+<script>
+    new Vue({
+        el: '.package-details',
+        data: {
+            details: {},
+            measureList: ['血压', '有氧运动心率', '心电', '血氧', '体重', '血糖', '血脂', '抗阻运动心率'],
+            sportsUnfold: false,
+            drugUnfold: false,
+            measureUnfold: false,
+            is_package: false
+        },
+        filters: {
+            week: function (value) {
+                var weekArr = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
+                value = value.split(',')
+                if (value.length == 7) {
+                    return '每天';
+                } else {
+                    var res = [];
+                    for (var i in value) {
+                        res.push(weekArr[value[i]])
+                    }
+                    return res.join('、');
+                }
+            }
+        },
+        mounted: function () {
+            /*创建实例后立刻执行*/
+            this.$nextTick(function () {
+                var template_id = location.hash.replace('#', '');
+                var _this = this;
+                $.post(ajaxUrl + '/v1_3/wx/member/package', {
+                    package_id: template_id
+                }, function (data) {
+                    data = JSON.parse(data);
+                    console.log(data)
+                    if (data.code == -1) {
+                        alert(data.msg)
+                    } else {
+                        _this.details = data.datas;
+                        setTimeout(function () {
+                            for (var i in $('.service-content-item-box').get()) {
+                                $('.service-content-item-box').eq(i).css('height', $('.service-content-item-box').eq(i).outerHeight(true))
+                            }
+                        }, 10);
+                        window.removeLoading();
+                    }
+                })
+            })
+        },
+    })
+</script>
+</html>

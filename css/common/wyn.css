@@ -1,0 +1,1280 @@
+/*v1.0 2016-11-24*/
+
+/*----------------------电脑端样式开始-------------------*/
+@media screen and (min-width: 800px) {
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif; /*字体*/
+        list-style: none;
+        resize: none; /*清除多行文本框右下角拉动图标*/
+        text-decoration: none; /*清除a标签下划线*/
+        font-style: normal;
+        font-weight: normal;
+        color: #666;
+        word-break: break-all; /*英文自动换行*/
+        border-radius: 0; /*清除圆角*/
+    }
+}
+
+/***********************电脑端样式结束*********************/
+
+/*---------------------手机端样式开始--------------------*/
+@media screen and (max-width: 800px) {
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif; /*字体*/
+        list-style: none;
+        resize: none; /*清除多行文本框右下角拉动图标*/
+        outline: none; /*清除input外围阴影*/
+        text-decoration: none; /*清除a标签下划线*/
+        font-style: normal;
+        font-weight: normal;
+        color: #666;
+        /*font-size: .24rem;*/
+        word-break: break-all; /*英文自动换行*/
+        border-radius: 0; /*清除圆角*/
+    }
+
+    body, html {
+        overflow-y: auto;
+    }
+
+    /*底部定位按钮*/
+    .btn-bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1rem;
+    }
+
+    .btn-bottom input {
+        border: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: #ff7878;
+        color: #fff;
+        font-size: .34rem;
+    }
+
+    .btn-bottom input.disabled {
+        background: #d0d0d0
+    }
+
+    .btn-bottom input.active {
+        background: #ff7878
+    }
+
+    /*手机顶部导航栏*/
+    .mobile_nav {
+        padding: 0 .22rem;
+        box-sizing: border-box;
+        display: -webkit-box;
+        height: .88rem;
+        line-height: .88rem;
+        background: #ff7878;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 12;
+    }
+
+    .mobile_nav > * {
+        color: #fff;
+    }
+
+    .mobile_nav span {
+        font-size: .34rem;
+        display: block;
+        -webkit-box-flex: 1;
+        text-align: center;
+        font-weight: 600;
+    }
+
+    .mobile_nav a {
+        min-width: 1rem;
+        display: block;
+        font-size: .28rem;
+
+    }
+
+    .mobile_nav a:last-child::before {
+        left: auto;
+        right: 0;
+        text-align: right;
+    }
+
+    .mobile_nav a::before {
+        text-align: left;
+        font-size: .44rem;
+        line-height: .88rem;
+        display: block;
+        left: 0;
+        -webkit-transform: translate(0, 0);
+        -moz-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+
+    /*用户头像+昵称（时间可选）*/
+    .user-header-name {
+        overflow: hidden;
+        padding: .24rem .3rem
+    }
+
+    .user-header-name div:first-child {
+        float: left;
+        width: .9rem;
+        height: .9rem;
+        border-radius: 50%;
+        margin-right: .24rem;
+        position: relative;
+    }
+
+    .user-header-name div:first-child img {
+        border-radius: 50%;
+        width: 100%;
+    }
+
+    .user-header-name div:first-child span {
+        position: absolute;
+        display: block;
+        height: .28rem;
+        padding: 0 .06rem;
+        min-width: .28rem;
+        box-sizing: border-box;
+        text-align: center;
+        background: #f7302e;
+        border-radius: 50%;
+        line-height: .28rem;
+        color: #fff;
+        font-size: .24rem;
+        top: -.02rem;
+        right: -.04rem;
+    }
+
+    .user-header-name div:nth-of-type(2) h3 {
+        margin-top: .1rem;
+        color: #666;
+        height: .24rem;
+        line-height: .24rem;
+        font-size: .24rem;
+    }
+
+    .user-header-name div:nth-of-type(2) h3 > * {
+        float: right;
+        color: #666;
+        font-size: .24rem;
+    }
+
+    .user-header-name div:nth-of-type(2) p {
+        margin-top: .2rem;
+        font-size: .26rem;
+        height: .36rem;
+        color: #333;
+    }
+
+}
+
+/*******************手机端样式结束**********************/
+
+/*----------------------公用插件------------------*/
+
+/*图标*/
+
+/*叹号*/
+.icon-sigh::before{
+    content: '\e914';
+}
+
+/*喇叭*/
+.icon-trumpet::before{
+    content:'\ea26';
+}
+
+/*播放*/
+.icon-play::before{
+    content:'\ea57'
+}
+/*暂停*/
+.icon-pause::before{
+    content:'\ea58'
+}
+
+/*盾牌*/
+.icon-shield::before{
+    content:'\e9b4';
+}
+/*电话*/
+.icon-phone::before {
+    content: '\e98e';
+}
+
+/*加载中*/
+.icon-loading::before{
+    content:'\e97f';
+    animation: rotate 1.3s infinite;
+}
+
+@keyframes rotate {
+    from{
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+/*锁头*/
+.icon-password::before {
+    content: '\e919'
+}
+.icon-password-2::before {
+    content: '\e92d'
+}
+/*查看密码*/
+.icon-password-hide::before {
+    content: '\e925';
+}
+/*隐藏密码*/
+.icon-password-show::before {
+    content: '\e90e';
+}
+
+/*关闭按钮*/
+.icon-small-close::before {
+    content: '\e92f';
+}
+.icon-small-close-vue::before{
+    content: '\e92f';
+}
+.icon-ht::before {
+    content: '\e903' !important;;
+    font-size: .36rem !important;;
+}
+
+/*后退*/
+.icon-back::before {
+    content: '\e903' !important;
+}
+/*用户*/
+.icon-user::before{
+    content:'\e971';
+}
+/*筛选*/
+.icon-nav-sx::before {
+    content: '\e900' !important;
+}
+
+/*箭头向左*/
+.icon-report::before {
+    content: '\e921' !important;
+}
+
+/*箭头向右*/
+.icon-go::before{
+    content:'\e90c';
+}
+
+/*箭头向下*/
+.icon-arrows-bottom::before{
+    content:'\e917';
+}
+
+/*箭头向上*/
+.icon-arrows-top::before{
+    content:'\e918';
+}
+
+/*带圈的右箭头*/
+.icon-right-bor::before{
+    content:'\ea42'
+}
+/*删除*/
+.icon-delete::before {
+    content: '\e9ac' !important;
+}
+
+/*关闭*/
+.icon-close::before {
+    content: '\e92f' !important;
+}
+
+/*对号*/
+.icon-yes::before {
+    content: "\e913" !important;
+}
+
+/*二维码*/
+.icon-two-code::before{
+    content:'\e938'
+}
+/*排序*/
+.icon-refresh::before {
+    content: '\e983' !important;
+}
+
+/*左旋转*/
+.icon-rotate-left::before {
+    content: '\e965' !important;
+}
+
+.icon-editor::before{
+    content: '\e932';
+}
+/*右旋转*/
+.icon-rotate-right::before {
+    content: '\e966' !important;
+}
+
+/*对号*/
+.icon-right::before{
+    content: '\e913' !important;
+}
+
+/*满星*/
+.icon-start::before{
+    content:'\e92b';
+}
+/*搜索*/
+.icon-search::before{
+    content:'\e986';
+}
+/*ios浏览器平滑滑动*/
+.scroll-touch {
+    -webkit-overflow-scrolling: touch;
+}
+
+/*--查看图片弹框结束--*/
+
+/*<<<<-----手机端样式----->>>>>>*/
+@media screen and (max-width: 800px) {
+
+    /*--提示弹出框--*/
+    .prompt-box {
+        display: none;
+    }
+
+    .prompt-box-bg {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .5);
+        left: 0;
+        top: 0;
+        z-index: 13;
+    }
+
+    .prompt-box-content {
+        border-radius: 5px;
+        padding: .3rem;
+        text-align: center;
+        min-width: 60%;
+        background: #fff;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        z-index: 14;
+    }
+
+    .prompt-box-content h3 {
+        font-size: .36rem;
+        line-height: .36rem;
+        margin: .3rem 0;
+        color: #333;
+    }
+
+    .prompt-box-content p {
+        margin: .3rem 0;
+        font-size: .28rem;
+        color: #666;
+        line-height: .28rem;
+    }
+
+    .prompt-box-content button {
+        margin: .3rem 0;
+        min-width: 60%;
+        font-size: .28rem;
+        border: 0;
+        color: #fff;
+        background: #ff7878;
+        height: .56rem;
+        border-radius: 3px;
+    }
+
+    /*好孕通公共登录弹出框*/
+    /*背景*/
+    .public-login-bg {
+        position: fixed;
+        background: rgba(0, 0, 0, .5);
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 9998;
+    }
+
+    /*内容*/
+    .public-login-content {
+        z-index: 9999;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        background: #fff;
+        border-radius: 5px;
+        width: 80%;
+        padding: 20px;
+    }
+
+    /*logo*/
+    .public-login-logo {
+        text-align: center;
+        margin-top: .2rem;
+    }
+
+    .icon-logo-public-login {
+        display: inline-block;
+        font-size: 2rem;
+        height: 2rem;
+        width: 2rem;
+    }
+
+    .icon-logo-public-login:before {
+        left: 0;
+        top: 0;
+        content: '\e920';
+        color: #ff7878;
+    }
+
+    /*输入框*/
+    .public-login-input-box {
+        margin-top: .2rem;
+
+    }
+
+    .public-login-input-box label {
+        margin-top: .2rem;
+        display: block;
+        border-bottom: 1px solid #eee;
+    }
+
+    .public-login-input-box label input {
+        color: #333;
+        font-size: .26rem;
+        height: .8rem;
+        display: block;
+        text-indent: 2.6em;
+        border: 0;
+        width: 100%;
+    }
+
+    .public-login-input-box label:before {
+        color: #ff7878;
+        font-size: .44rem;
+        left: .1rem;
+        top: 50%;
+        -webkit-transform: translate(0, -50%);
+        -moz-transform: translate(0, -50%);
+        -ms-transform: translate(0, -50%);
+        -o-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+    }
+
+    .icon-user-ipnut::before {
+        content: '\e91d';
+
+    }
+
+    .icon-password-ipnut::before {
+        content: '\e924';
+    }
+
+    .public-login-warning {
+        font-size: .24rem;
+        height: .6rem;
+        line-height: .6rem;
+        color: #e42727;
+        text-indent: .15rem;
+    }
+
+    .public-login-input-box button {
+        display: block;
+        width: 100%;
+        height: .92rem;
+        color: #ff7878;
+        border-radius: 5px;
+        background: #fff;
+        font-size: .36rem;
+        border: 1px solid #ff7878;
+        margin-top: .2rem;
+        margin-bottom: .2rem;
+    }
+
+    .public-login-input-box button.active {
+        background: #ff7878;
+        color: #fff;
+    }
+
+    /*关闭按钮*/
+    span.icon-close-public-login {
+        position: absolute;
+        right: .3rem;
+        top: .3rem;
+        display: block;
+        width: .32rem;
+        height: .32rem;
+        font-size: .32rem;
+        color: #666;
+    }
+
+    .icon-close-public-login::before {
+        top: 0;
+        left: 0;
+        content: '\ea0f';
+    }
+
+    /*--公用登录框结束--*/
+    /*好孕通通用加载动画*/
+    .haoyunt-loading {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 11;
+        background: url('../../image/common/loading.gif') no-repeat center #fff;
+        background-size: 2rem;
+    }
+
+}
+
+/*<<<<-----插件PC端样式----->>>>>>*/
+@media screen and (min-width: 800px) {
+    /*--提示弹出框--*/
+    .prompt-box {
+        display: none;
+    }
+
+    .prompt-box-bg {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .5);
+        left: 0;
+        top: 0;
+        z-index: 13;
+    }
+
+    .prompt-box-content {
+        border-radius: 5px;
+        padding: 16px;
+        text-align: center;
+        min-width: 200px;
+        background: #fff;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        z-index: 14;
+    }
+
+    .prompt-box-content h3 {
+        font-size: 18px;
+        line-height: 18px;
+        margin: 15px 0;
+        color: #333;
+    }
+
+    .prompt-box-content p {
+        margin: 15px 0;
+        font-size: 16px;
+        color: #666;
+        line-height: 18px;
+    }
+
+    .prompt-box-content button {
+        margin: 15px 0;
+        min-width: 60%;
+        font-size: 16px;
+        border: 0;
+        color: #fff;
+        background: #ff7878;
+        height: 32px;
+        border-radius: 3px;
+    }
+
+    /*--提示弹出框结束（手机）--*/
+    /*--好孕通公共登录弹出框--*/
+    /*好孕通公共登录弹出框*/
+    .public-login-bg {
+        position: fixed;
+        background: rgba(0, 0, 0, .5);
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 9998;
+    }
+
+    /*内容*/
+    .public-login-content {
+        z-index: 9999;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        background: #fff;
+        border-radius: 5px;
+        width: 400px;
+        padding: 20px;
+    }
+
+    /*logo*/
+    .public-login-logo {
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+
+    .icon-logo-public-login {
+        display: inline-block;
+        font-size: 100px;
+        height: 100px;
+        width: 100px;
+    }
+
+    .icon-logo-public-login:before {
+        left: 0;
+        top: 0;
+        content: '\e920';
+        color: #ff7878;
+    }
+
+    /*输入框*/
+    .public-login-input-box {
+        margin-top: 10px;
+
+    }
+
+    .public-login-input-box label {
+        margin-top: 10px;
+        display: block;
+        border-bottom: 1px solid #eee;
+    }
+
+    .public-login-input-box label input {
+        color: #333;
+        font-size: 16px;
+        height: 44px;
+        display: block;
+        text-indent: 2.6em;
+        border: 0;
+        width: 100%;
+    }
+
+    .public-login-input-box label:before {
+        color: #ff7878;
+        font-size: 22px;
+        left: 8px;
+        top: 50%;
+        -webkit-transform: translate(0, -50%);
+        -moz-transform: translate(0, -50%);
+        -ms-transform: translate(0, -50%);
+        -o-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+    }
+
+    .icon-user-ipnut::before {
+        content: '\e91d';
+
+    }
+
+    .icon-password-ipnut::before {
+        content: '\e924';
+    }
+
+    .public-login-warning {
+        font-size: 14px;
+        height: 30px;
+        line-height: 30px;
+        color: #e42727;
+        text-indent: 8px;
+    }
+
+    .public-login-input-box button {
+        display: block;
+        width: 100%;
+        height: 44px;
+        color: #ff7878;
+        border-radius: 5px;
+        background: #fff;
+        font-size: 14px;
+        border: 1px solid #ff7878;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .public-login-input-box button.active {
+        background: #ff7878;
+        color: #fff;
+    }
+
+    /*关闭按钮*/
+    span.icon-close-public-login {
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+        color: #666;
+    }
+
+    .icon-close-public-login::before {
+        top: 0;
+        left: 0;
+        content: '\ea0f';
+    }
+
+    /*--公用登录框结束--*/
+    /*好孕通通用加载动画*/
+    .haoyunt-loading {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url('../../image/common/loading.gif') no-repeat center #fff;
+    }
+
+}
+
+/**************************公用插件结束*************************/
+
+/*-------------------------常用功能--------------------------*/
+/*偏移*/
+/*上左偏移-50%*/
+.xy--50 {
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/*上左偏移50%*/
+.xy-50 {
+    -webkit-transform: translate(50%, 50%);
+    -moz-transform: translate(50%, 50%);
+    -ms-transform: translate(50%, 50%);
+    -o-transform: translate(50%, 50%);
+    transform: translate(50%, 50%);
+}
+
+/*浮动*/
+/*左浮动*/
+.fleft {
+    float: left !important;
+}
+
+/*右浮动*/
+.fright {
+    float: right !important;
+}
+
+/*清除浮动*/
+.clear-both {
+    clear: both;
+}
+
+/*布局类*/
+
+/*弹性布局*/
+.webkitBox {
+    display: -webkit-box;
+}
+
+/*弹性富余空间1*/
+.web-b-f-1 {
+    -webkit-box-flex: 1;
+}
+
+/*弹性布局平均分配*/
+.webkitJustify {
+    -webkit-box-pack: justify;
+}
+
+/*包含maigin和padding的宽的盒子*/
+.border-box {
+    box-sizing: border-box !important;
+}
+
+/*不包含maigin和padding的宽的盒子*/
+.content-box {
+    box-sizing: content-box !important;
+}
+
+/*颜色类*/
+
+/*文字白色*/
+.c-f{
+    color: #fff !important;
+}
+
+/*文字灰色333*/
+.c-3 {
+    color: #333 !important;
+}
+
+/*文字灰色666*/
+.c-6 {
+    color: #666 !important;
+}
+
+/*文字灰色999*/
+.c-9{
+    color: #999 !important;
+}
+
+.c-c{
+    color: #ccc !important;
+}
+/*白色背景*/
+.bc-f {
+    background-color: #fff !important;
+}
+
+/*灰色背景eee*/
+.bc-e {
+    background-color: #eee !important;
+}
+
+/*边框类*/
+/*下边框8像素#eee*/
+.bor-b-8-e {
+    border-bottom: 8px solid #eee !important;
+}
+
+/*下边框1像素eee*/
+.bor-b-1-e {
+    border-bottom: 1px solid #eee !important;
+}
+
+.bor-0{
+    border:0!important;
+}
+
+/*文本类*/
+/*单行文本不换行*/
+.no-wrap {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/*圆角50%*/
+.bor-radius-half {
+    border-radius: 50% !important;
+}
+
+/*display*/
+.block {
+    display: block;
+
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+/*文本对齐方式*/
+.text-r {
+    text-align: right;
+}
+
+.text-l {
+    text-align: left;
+}
+
+.text-c {
+    text-align: center;
+}
+
+.pad-0{
+    padding:0!important;
+}
+@media screen and (min-width: 800px) {
+    /*上内边距44px*/
+    .pad-t-44 {
+        padding-top: 44px !important;
+    }
+
+    /*上内边距15px*/
+    .pad-t-15 {
+        padding-top: 15px;
+    }
+
+    /*下内边距15*/
+    .pad-b-15 {
+        padding-bottom: 15px;
+    }
+
+    /*下内边距88*/
+    .pad-b-44 {
+        padding-bottom: 44px !important;
+    }
+
+    /*左内边距15*/
+    .pad-l-15 {
+        padding-left: 15px !important;
+    }
+
+    /*右内边距15*/
+    .pad-r-15 {
+        padding-right: 15px !important;
+    }
+
+    /*左外边距15*/
+    .mar-l-15 {
+        margin-left: 15px !important;
+    }
+
+    /*右外边距15*/
+    .mar-r-15 {
+        margin-right: 15px !important;
+    }
+
+    /*上外边距15*/
+    .mar-t-15 {
+        margin-top: 15px !important;
+    }
+
+    /*下外边距15*/
+    .mar-b-15 {
+        margin-bottom: 15px !important;
+    }
+
+    /*外边距15px*/
+    .mar-15 {
+        margin: 15px !important;
+    }
+
+    /*字号12px*/
+    .font-12 {
+        font-size: 12px !important;
+    }
+
+    /*字号14px*/
+    .font-14 {
+        font-size: 14px !important;
+    }
+
+    /*字号16px*/
+    .font-16 {
+        font-size: 16px !important;
+    }
+
+    /*字号18px*/
+    .font-18 {
+        font-size: 18px !important;
+    }
+
+    /*字号20px*/
+    .font-20 {
+        font-size: 20px !important;
+    }
+
+    /*字号22px*/
+    .font-22 {
+        font-size: 22px !important;
+    }
+
+    /*字号24px*/
+    .font-24 {
+        font-size: 24px !important;
+    }
+
+    /*字号26px*/
+    .font-26 {
+        font-size: 26px !important;
+    }
+
+    /*字号28px*/
+    .font-28 {
+        font-size: 28px !important;
+    }
+
+    /*字号30px*/
+    .font-30 {
+        font-size: 30px !important;
+    }
+
+    /*圆角*/
+    /*圆角5px*/
+    .bor-radius-5 {
+        border-radius: 5px !important;
+    }
+
+    /*圆角3px*/
+    .bor-radius-3 {
+        border-radius: 3px !important;
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+    /*字体大小*/
+    /*字号12px*/
+    .font-12 {
+        font-size: .24rem !important;
+    }
+
+    /*字号14px*/
+    .font-14 {
+        font-size: .14rem !important;
+    }
+
+    /*字号16px*/
+    .font-16 {
+        font-size: .32rem !important;
+    }
+
+    /*字号18px*/
+    .font-18 {
+        font-size: .36rem !important;
+    }
+
+    /*字号20px*/
+    .font-20 {
+        font-size: .2rem !important;
+    }
+
+    /*字号22px*/
+    .font-22 {
+        font-size: .44rem !important;
+    }
+
+    /*字号24px*/
+    .font-24 {
+        font-size: .48rem !important;
+    }
+
+    /*字号26px*/
+    .font-26 {
+        font-size: .52rem !important;
+    }
+
+    /*字号28px*/
+    .font-28 {
+        font-size: .56rem !important;
+    }
+
+    /*字号30px*/
+    .font-30 {
+        font-size: .6rem !important;
+    }
+
+    /*外边距15px*/
+    .mar-15 {
+        margin: 15px !important;
+    }
+
+    /*右内边距15*/
+    .pad-r-15 {
+        padding-right: 15px !important;
+    }
+
+    /*左外边距15*/
+    .mar-l-15 {
+        margin-left: 15px!important;
+    }
+
+    /*右外边距15*/
+    .mar-r-15 {
+        margin-right: 15px !important;
+    }
+
+    /*上外边距15*/
+    .mar-t-15 {
+        margin-top: 15px!important;
+    }
+
+    .mar-t-10 {
+        margin-top: 10px!important;
+    }
+
+    .mar-b-10{
+        margin-bottom: 10px!important;
+    }
+    /*下外边距15*/
+    .mar-b-15 {
+        margin-bottom: .3rem !important;
+    }
+
+    /*下边框8像素#eee*/
+    .bor-b-8-e {
+        border-bottom: .15rem solid #eee !important;
+    }
+
+    /*上内边距44px*/
+    .pad-t-44 {
+        padding-top: .88rem !important;
+    }
+
+    /*上内边距15px*/
+    .pad-t-15 {
+        padding-top: .3rem;
+    }
+
+    /*下内边距15*/
+    .pad-b-15 {
+        padding-bottom: .3rem;
+    }
+
+    /*下内边距88*/
+    .pad-b-44 {
+        padding-bottom: .88rem !important;
+    }
+
+    /*左内边距15*/
+    .pad-l-15 {
+        padding-left: .3rem !important;
+    }
+    /*圆角5px*/
+    .bor-radius-10{
+        border-radius: 10px !important;
+    }
+
+    /*圆角5px*/
+    .bor-radius-5 {
+        border-radius: 5px !important;
+    }
+
+    /*圆角3px*/
+    .bor-radius-3 {
+        border-radius: 3px!important;
+    }
+}
+
+.bor-radius-0{
+    border-radius: 0 !important;
+}
+/*********************常用功能结束***********************/
+
+.op-0{
+    opacity: 0;
+}
+/*载入字体*/
+@font-face {
+    font-family: 'icomoon';
+    src: url('../../fonts/icomoon.eot?uvong4');
+    src: url('../../fonts/icomoon.eot?uvong4#iefix') format('embedded-opentype'),
+    url('../../fonts/icomoon.ttf?uvong4') format('truetype'),
+    url('../../fonts/icomoon.woff?uvong4') format('woff'),
+    url('../../fonts/icomoon.svg?uvong4#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    position: relative;
+    font-family: 'icomoon' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]::after, [class*="icon-"]::before, [class^="icon-"]::before, [class*="icon-"]::after {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+}
+
+/*-----------------------载入字体结束---------------------------*/
+.absolute{
+    position: absolute;
+}
+
+.relative  {
+    position: relative!important;
+}
+.fixed{
+    position: fixed;
+}
+
+/*水平居中*/
+.level-center{
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+/*垂直居中*/
+.vertical-center{
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.bor-b-10-e{
+    border-bottom:10px solid #eee;
+}
+
+.bor-t-1-e{
+    border-top:1px solid #eee;
+}
+.z-999{
+ z-index:999999!important;
+}

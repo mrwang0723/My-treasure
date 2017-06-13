@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <title>我的信息</title>
+    <link href="../../css/common/wyn.css" rel="stylesheet" type="text/css">
+    <link href="../../css/common/common.css?100" rel="stylesheet" type="text/css">
+    <link href="../../css/doctor/my-invitation.css" rel="stylesheet" type="text/css">
+    <link href="../../css/doctor/doc-message.css" rel="stylesheet" type="text/css">
+    <script src="../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="../../js/common/wyn-plugin-library.js?100" type="text/javascript"></script>
+    <script src="../../js/common/common.js" type="text/javascript"></script>
+    <script src="../../js/common/vue.js" type="text/javascript"></script>
+    <script src="../../js/doctor/doc-message.js"></script>
+</head>
+
+<body>
+<script>
+    wyn.init.page()
+</script>
+<div class="my-message-box see-my-message">
+    <form>
+        <div class="input-head">
+            <p>头像</p>
+            <s><img style="display:block" data-name="avatar" :style="avatarStyle"  :src="!!!docDatas.avatar?'../../images/common/user-info-default-head.png':docDatas.avatar"></s>
+        </div>
+        <ul class="input-form-box">
+            <li class="input-text webkitBox perfect-message-name">
+                <p>姓名</p>
+                <label ><input type="button" v-model="docDatas.name"></label>
+            </li>
+            <li class="input-text webkitBox perfect-message-name">
+                <p>注册电话</p>
+                <label ><input type="button" v-model="docDatas.phone"></label>
+            </li>
+            <li class="input-text webkitBox perfect-message-sex">
+                <p>性别</p>
+                <label>
+                    <input name="doc-sex" type="button" :value="docDatas.sex|sex">
+                </label>
+            </li>
+            <li class="input-text webkitBox perfect-message-hospital">
+                <p>医院</p>
+                <label>
+                    <input name="doc-hospital" type="button" v-model="docDatas.hospital">
+                </label>
+                <!--<span class="icon-go"></span>-->
+            </li>
+            <li class="input-text webkitBox perfect-message-office">
+                <p>科室</p>
+                <label>
+                    <input name="doc-office" type="button" v-model="docDatas.department">
+                </label>
+                <!--<span class="icon-go"></span>-->
+            </li>
+            <li class="input-text webkitBox perfect-message-title">
+                <p>职称</p>
+                <label>
+                    <input name="doc-title" type="button" v-model="docDatas.title">
+                </label>
+                <!--<span class="icon-go"></span>-->
+            </li>
+            <li class="input-text webkitBox perfect-message-speciality">
+                <p>专科擅长</p>
+                <label>
+                    <input class="no-wrap" style="font-size:16px" name="doc-speciality" type="button" v-model="docDatas.speciality">
+                </label>
+                <!--<span class="icon-go"></span>-->
+            </li>
+        </ul>
+        <ul>
+            <li class="doc-warn-text">
+                <i class="c-9-14">以下内容仅供平台审核，＊为必填项。</i>
+            </li>
+        </ul>
+        <div class="input-head doc-chest-card">
+            <p>胸牌</p>
+            <s><img data-name="cert_card" :style="cert_cardStyle" :src="!!docDatas.cert_card?docDatas.cert_card:'../../images/doctor/doc-card-bg.png'" /></s>
+        </div>
+        <div class="input-head doc-jobs-card">
+            <p>执业证书</p>
+            <s><img data-name="job_card" :style="job_cardStyle" :src="!!docDatas.job_card?docDatas.job_card:'../../images/doctor/doc-card-bg.png'" /></s>
+        </div>
+        <div class="btn-submit">
+            <button @click="changes" class="btn-bottom doc-bc bor-radius-0" type="button">申请变更</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>未通过审核</title>
+    <script></script>
+</head>
+<body>
+
+</body>
+<script>
+    alert('您不是平台的认证医生，暂时无法执行该操作。请提供更准确的认证信息以便快速通过审核。谢谢您的配合')
+    setTimeout(function(){
+        //关闭微信窗口
+        WeixinJSBridge.invoke('closeWindow', {}, function (res) {
+        });
+    },100)
+</script>
+</html>

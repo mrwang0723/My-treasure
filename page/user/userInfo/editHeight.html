@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <title>设置身高</title>
+    <link href="../../../css/common/wyn.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/common/common.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/common/weui.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/user/userInfo/userInfo.css" rel="stylesheet" type="text/css">
+    <script src="../../../js/common/vue.js" type="text/javascript"></script>
+    <script src="../../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="../../../js/common/wyn-plugin-library.js" type="text/javascript"></script>
+    <script src="../../../js/common/common.js" type="text/javascript"></script>
+    <script src="../../../js/user/userInfo/setHeight.js" type="text/javascript"></script>
+    <script>
+        wyn.init.page()
+       /* var script = document.createElement('script');
+        script.setAttribute('src', '../../../js/user/userInfo/userInfo.js?'+Date.now())
+        document.head.appendChild(script)*/
+    </script>
+</head>
+<body onload="wyn.init.bodyHeightMax()">
+    <div class="edit-height-box edit-box" id="height">
+            <div class="edit-height-left">
+                <div class="edit-show-num">
+                    <s>{{heightDefault}}</s>厘米
+                </div>
+                <div class="person-img">
+                    <!--<img src="../../../images/userInfo/preson-img.png">-->
+                    <img v-if="sex" width=".72rem" src="../../../images/userInfo/preson-img.png">
+                    <img v-else style="width:98px" src="../../../images/userInfo/preson-woman.png">
+                </div>
+
+            </div>
+            <div class="edit-set-roll ">
+                <p class="alt-text">上下滑动</p>
+                <div class="edit-height-right">
+                    <div class="edit-set-right edit-set-height-right ">
+                        <p>微调+</p>
+                        <s class="icon-back"></s>
+                    </div>
+                    <div class="edit-set-content">
+                        <div class="edit-set-content-num-box">
+                            <div class="edit-set-content-scale"></div>
+                            <ul class="edit-set-content-num" style="transform: translate(0px,0)">
+                                <li>240</li>
+                                <li>230</li>
+                                <li>220</li>
+                                <li>210</li>
+                                <li>200</li>
+                                <li>190</li>
+                                <li>180</li>
+                                <li>170</li>
+                                <li>160</li>
+                                <li>150</li>
+                                <li>140</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="edit-set-left edit-set-height-left">
+                        <s class="icon-back"></s>
+                        <p>微调-</p>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-submit">
+                <button type="button" @click="setHeight()" name="set-height-submit">完成</button>
+            </div>
+    </div>
+</body>
+<script>
+    $('.edit-set-content-num').css('height',wyn.get.domItemHeightSum($('.edit-set-content-num li')))
+</script>
+</html>

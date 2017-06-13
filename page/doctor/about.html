@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <title>个人信息</title>
+    <link href="../../css/common/wyn.css" rel="stylesheet" type="text/css">
+    <link href="../../css/common/common.css" rel="stylesheet" type="text/css">
+    <link href="../../css/doctor/about.css" rel="stylesheet" type="text/css">
+    <script src="../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="../../js/common/vue.js" type="text/javascript"></script>
+    <script src="../../js/common/wyn-plugin-library.js" type="text/javascript"></script>
+    <script src="../../js/common/common.js" type="text/javascript"></script>
+    <script src="../../js/common/jquerySession.js" type="text/javascript"></script>
+    <script src="../../js/doctor/about.js" type="text/javascript"></script>
+    <script>
+        wyn.init.page();
+    </script>
+</head>
+<body class="bc-e">
+<div class="about-box">
+    <!--基础信息-->
+    <div class="about-info-box">
+        <div class="about-info-head">
+            <img :src="!!aboutDatas.face?aboutDatas.face:'../../images/common/common-header.png'">
+        </div>
+        <div class="about-info">
+            <h3>{{aboutDatas.nickname}}</h3>
+            <p>{{aboutDatas.title}}／{{aboutDatas.branch}}</p>
+            <span>{{aboutDatas.hosp}}</span>
+        </div>
+    </div>
+
+    <!--其他特色-->
+    <div class="about-other">
+
+        <!--执业点-->
+        <div class="about-other-item">
+            <h2 class="title">
+                <img src="../../images/common/icon_ysjj_nav_zyd@2x.png">
+                <p>执业点</p>
+            </h2>
+            <div class="text">
+                <p>{{aboutDatas.hosp}}</p>
+                <p>{{aboutDatas.branch}}</p>
+            </div>
+        </div>
+
+        <!--擅长-->
+        <div class="about-other-item">
+            <h2 class="title" @click.capture="showText($event)">
+                <img src="../../images/common/icon_ysjj_nav_sc@2x.png">
+                <p>擅长</p>
+                <span class="icon-go"></span>
+            </h2>
+            <div class="text two-row">
+                <p>{{aboutDatas.goods}}</p>
+            </div>
+        </div>
+
+        <!--简介-->
+        <div class="about-other-item">
+            <h2 class="title" @click.capture="showText($event)">
+                <img src="../../images/common/icon_ysjj_nav_jj@2x.png">
+                <p>简介</p>
+                <span class="icon-go"></span>
+            </h2>
+            <div class="text two-row">
+                <p>{{aboutDatas.body}}</p>
+            </div>
+        </div>
+
+        <!--团队成员-->
+        <div class="about-other-item">
+            <h2 class="title">
+                <img src="../../images/common/icon_ysjj_nav_tdcy@2x.png">
+                <p>团队成员&nbsp;({{aboutDatas.group.count}}人)</p>
+            </h2>
+            <!--<ul class="team-members">
+                <li class="team-members-item">
+                    <div class="team-img">
+                        <img src="">
+                    </div>
+                    <div class="team-text">
+                        <h4>刘胜利 / <span>主任医师</span></h4>
+                        <p>中国人民解放军301医院</p>
+                    </div>
+                </li>
+                <li class="team-members-item">
+                    <div class="team-img">
+                        <img src="">
+                    </div>
+                    <div class="team-text">
+                        <h4>刘胜利 / <span>主任医师</span></h4>
+                        <p>中国人民解放军301医院</p>
+                    </div>
+                </li>
+            </ul>-->
+        </div>
+    </div>
+</div>
+</body>
+</html>

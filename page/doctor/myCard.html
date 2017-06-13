@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <title>我的名片</title>
+    <link href="../../css/common/wyn.css" rel="stylesheet" type="text/css">
+    <link href="../../css/common/common.css" rel="stylesheet" type="text/css">
+    <link href="../../css/doctor/myCard.css" rel="stylesheet" type="text/css">
+    <script src="../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="../../js/common/common.js" type="text/javascript"></script>
+    <script src="../../js/common/wyn-plugin-library.js" type="text/javascript"></script>
+    <script src="../../js/common/html2canvas.js" type="text/javascript"></script>
+    <script src="../../js/request/request.js" type="text/javascript"></script>
+</head>
+<script>
+    wyn.init.page();
+</script>
+<body class="bc-e">
+<!--<div id="card" class="doc-card-box">
+    <span>扫描二维码与我联系</span>
+    <div class="two-code-box">
+        <img src="../../images/common/F4730631-EB42-477C-962F-05374E7401A6@2x.png" alt="我是二维码">
+    </div>
+    <div class="doc-message webkitBox">
+        <div class="doc-header">
+            <img src="../../images/common/F4730631-EB42-477C-962F-05374E7401A6@2x.png" alt="">
+        </div>
+        <p class="web-b-f-1">
+            <strong>医生姓名</strong>主治医生<br>心内科<br>人民解放军医院
+        </p>
+    </div>
+    <div class="major-box">
+        <h3>专业擅长</h3>
+        <p>我有25个字</p>
+    </div>
+</div>-->
+<p style="bottom:10px;width: 100%;z-index:999" class="c-8833-14 text-c absolute">长按我的名片，选择“发送给朋友”或“保存图片”</p>
+<div class="absolute bc-e" style="width: 100%;height: 100%; z-index: 1;left: 0;top: 0;"></div>
+</body>
+<script>
+    $(function () {
+        /*生成图片*/
+        getDocCard(function () {
+            html2canvas($("#card"), {
+                onrendered: function (canvas) {
+                    var url = canvas.toDataURL();
+                    var img = new Image;
+                    img.src = url;
+                    var style = {
+                        position: 'absolute',
+                        width: '90%',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%,-50%)',
+                        display: 'block',
+                        'z-index': 999
+                    }
+                    for (var i in style) {
+                        img.style[i] = style[i];
+                    }
+                    $('body').append(img);
+                    $("#card").css('display', 'none');
+                    setTimeout(function(){
+                        window.removeLoading();
+                    },300)
+                }
+            });
+        });
+
+        /* /!*本地测试*!/
+         html2canvas($("#card"), {
+         onrendered: function (canvas) {
+         var url = canvas.toDataURL();
+         var img = new Image;
+         img.src = url;
+         var style = {
+         position: 'absolute',
+         width: '90%',
+         top: '50%',
+         left: '50%',
+         transform: 'translate(-50%,-50%)',
+         display: 'block',
+         'z-index': 999
+         }
+         for (var i in style) {
+         img.style[i] = style[i];
+         }
+         $('body').append(img);
+         $("#card").css('display', 'none');
+         }
+         });*/
+    })
+
+</script>
+</html>

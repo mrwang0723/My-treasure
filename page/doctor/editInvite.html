@@ -1,0 +1,173 @@
+<html>
+<head lang="zh-cmn-Hans">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>邀请医生</title>
+    <script src="../../js/common/zpto.js" type="text/javascript"></script>
+    <link href="../../css/common/wyn.css?" rel="stylesheet" type="text/css">
+    <link href="../../css/common/common.css?" rel="stylesheet" type="text/css">
+    <link href="../../css/doctor/my-invitation.css" rel="stylesheet" type="text/css">
+    <script src="../../js/common/wyn-plugin-library.js" type="text/javascript"></script>
+    <script src="../../js/common/common.js?" type="text/javascript"></script>
+    <!--<script src="../../js/common/example.js" type="text/javascript"></script>-->
+    <script src="../../js/doctor/myInvitation.js?" type="text/javascript"></script>
+    <script type="text/javascript">
+        var date = Date.now();
+        wyn.init.page();
+    </script>
+</head>
+<body>
+<div style="position:absolute;left:0;top: 0;bottom: 0;right: 0;overflow: hidden;">
+    <div style="position:absolute;left:0;top: 0;bottom: 0;right: 0;overflow: hidden;">
+        <div style="position:absolute;left:0;top: 0;bottom: 0;right: 0;-webkit-overflow-scrolling: touch;overflow-y: auto"
+             class="add-invite-box">
+            <p class="add-invite-hint icon-trumpet">邀请码是一对一邀请时使用，请确认对方是否符合条件</p>
+            <ul class="add-invite-input-box">
+                <form>
+                    <input id="invite_id" type="hidden" name="invite_id" value="">
+                    <li class="doc-name">
+                        <p>姓名<s>*</s></p>
+                        <label>
+                            <input attr='{"max":"4","type":"text"}' name="name" type="hidden" placeholder="请输入2-4个字中文姓名"
+                                   value="">
+                            <i class="touch-feedback">请输入中文姓名</i>
+                        </label>
+                    </li>
+                    <li class="doc-sex">
+                        <p>性别<s>*</s></p>
+                        <p>
+                            <label>
+                                <input type="radio" checked name="sex" value="1"><span class="icon-right">男</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="sex" value="2"><span class="icon-right">女</span>
+                            </label>
+                        </p>
+                    </li>
+                    <li class="doc-tel">
+                        <p>手机号<s>*</s></p>
+                        <label>
+                            <input attr='{"max":"11","type":"tel"}' type="hidden" placeholder="请输入手机号" name="phone">
+                            <i class="touch-feedback">请输入手机号</i>
+                        </label>
+                    </li>
+
+                    <li class="doc-hospital">
+                        <p>医院<s>*</s></p>
+                        <label>
+                            <input name="hospital" type="hidden" placeholder="请选择医院">
+                            <input type="hidden" name="hospital_name">
+                            <i class="touch-feedback">请选择医院</i>
+                        </label>
+                    </li>
+
+                    <li class="doc-warn-text">
+                        <i>＊号标记为对方无法修改，请认真填写</i>
+                    </li>
+
+                    <li class="doc-office">
+                        <p>科室</p>
+                        <label>
+                            <input required name="department" type="hidden">
+                            <input name='dept_name' type="hidden">
+                            <i class="touch-feedback">请选择科室</i>
+                        </label>
+                    </li>
+
+                    <li class="doc-title">
+                        <p>职称</p>
+                        <label>
+                            <input required name="title" type="hidden">
+                            <i class="touch-feedback">请选择职称</i>
+                        </label>
+                    </li>
+                </form>
+            </ul>
+            <div class="btn-submit">
+                <button disabled="disabled" class="btn-bottom doc-bc bor-radius-0" type="submit">确认修改</button>
+            </div>
+        </div>
+
+        <!--选择医院列表-->
+        <div style="z-index: 99" class="select-box select-search-box doc-hospital-select-box edit-list-box">
+            <div class="edit-list">
+                <ul id="edit-list" class="scroll-touch">
+                    <p class="search-hint">没有您要搜索的医院</p>
+                </ul>
+            </div>
+            <ul class="search-box user-input">
+                <li class="icon-search webkitBox">
+                    <input id="search" placeholder="搜索医院" type="text" name="search-hospital">
+                    <span class="icon-small-close"></span>
+                    <s class="web-b-f-1">新增</s>
+                </li>
+            </ul>
+        </div>
+
+
+        <!--选择科室列表-->
+        <div style="z-index: 99" class="select-box doc-office-select-box edit-list-box">
+            <div class="edit-list">
+                <ul id="edit-list" style="padding-bottom: 48px;" class="scroll-touch hospital-list">
+                </ul>
+            </div>
+            <!--showOffice()-->
+            <div class="btn-submit">
+                <button type="button" onclick="showOffice()" class="btn-bottom btn-feedback doc-bc bor-radius-0"
+                        name="edit-submit">新增科室
+                </button>
+            </div>
+        </div>
+
+        <!--选择职称列表-->
+        <div style="z-index: 99" class="select-box doc-title-select-box edit-list-box">
+            <div class="edit-list">
+                <ul id="edit-list" class="scroll-touch hospital-list">
+                </ul>
+            </div>
+        </div>
+
+
+        <!--编辑输入框-->
+        <div style="z-index: 99" class="edit-text-box edit-text-box-public">
+            <p></p>
+            <label>
+                <input placeholder="" required name="edit-name">
+                <span class="icon-small-close"></span>
+            </label>
+            <div class="btn-submit">
+                <button type="button" class="btn-bottom btn-feedback doc-bc bor-radius-0" name="edit-submit">完成</button>
+            </div>
+        </div>
+
+        <!--添加医院-->
+        <div style="z-index: 100" class="edit-text-box edit-text-box-hospital">
+            <p>添加医院</p>
+            <label>
+                <input placeholder="请输入要添加的医院名称" maxlength="30" required name="edit-name">
+                <span class="icon-small-close"></span>
+            </label>
+            <div class="btn-submit">
+                <button type="button" onclick="addHospatal()" class="btn-bottom btn-feedback doc-bc bor-radius-0"
+                        name="edit-submit">完成
+                </button>
+            </div>
+        </div>
+
+        <!--添加科室-->
+        <div style="z-index: 100" class="edit-text-box edit-text-box-office">
+            <p>添加科室</p>
+            <label>
+                <input placeholder="请输入要添加的科室名称" maxlength="15" required name="edit-name">
+                <span class="icon-small-close"></span>
+            </label>
+            <div class="btn-submit">
+                <button type="button" onclick="addOffice()" class="btn-bottom btn-feedback doc-bc bor-radius-0"
+                        name="edit-submit">完成
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

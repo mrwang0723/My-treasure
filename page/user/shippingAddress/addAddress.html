@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <title>新增地址</title>
+    <link href="../../../css/common/wyn.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/common/common.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/user/shippingAddress/shippingAddress.css" rel="stylesheet" type="text/css">
+    <script src="../../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="../../../js/common/wyn-plugin-library.js" type="text/javascript"></script>
+    <script src="../../../js/common/common.js" type="text/javascript"></script>
+    <script src="../../../js/common/jquerySession.js" type="text/javascript"></script>
+    <script src="../../../js/user/shippingAddress/shippingAddress.js" type="text/javascript"></script>
+
+</head>
+<body>
+<form>
+<div class="main-box add-addrress-box">
+    <input type="hidden" name="address_id" value="">
+    <ul class="editor-box user-input">
+        <li>
+            <label>
+                <s class="nickname">收货人</s>
+                <input maxlength="12" placeholder="请填写收货人" name="nickname" type="text">
+                <span class="icon-small-close"></span>
+            </label>
+        </li>
+        <li>
+            <label>
+                <s class="phone">联系电话</s>
+                <input name="phone" placeholder="请填写联系电话" type="tel">
+                <span class="icon-small-close"></span>
+            </label>
+        </li>
+        <li>
+            <textarea name="body" class="body" placeholder="请填写详细地址，不少于5个字。"></textarea>
+        </li>
+    </ul>
+    <div class="set-default">
+        <p>设为默认地址</p>
+        <label for="switchCP" class="weui-switch-cp set-btn">
+            <input id="switchCP" class="weui-switch-cp__input" checked="checked" type="checkbox">
+            <div class="weui-switch-cp__box"></div>
+        </label>
+    </div>
+    <div class="address-btn">
+        <button type="button">保存</button>
+    </div>
+</div>
+</form>
+</body>
+<script>
+    initPage()
+</script>
+</html>

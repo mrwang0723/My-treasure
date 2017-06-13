@@ -1,0 +1,156 @@
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <title>医生邀请码</title>
+    <link href="../../css/common/wyn.css" rel="stylesheet" type="text/css">
+    <link href="../../css/common/common.css" rel="stylesheet" type="text/css">
+    <link href="../../css/doctor/my-invitation.css" rel="stylesheet" type="text/css">
+    <script src="../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="../../js/common/wyn-plugin-library.js" type="text/javascript"></script>
+    <script src="../../js/common/common.js" type="text/javascript"></script>
+    <script src="../../js/common/vue.js" type="text/javascript"></script>
+    <script src="../../js/common/html2canvas.js" type="text/javascript"></script>
+</head>
+<script>
+    wyn.init.page()
+</script>
+<body>
+<!--<p class="popText"
+   style="font-size: .15rem;background: none;position: fixed;color: #ccc;bottom: .15rem;left:0;right:0;text-align: center;">
+    长按上方二维码,选择&nbsp;“发送给朋友”&nbsp;或&nbsp;“保存图片”</p>-->
+<!--<div class="invite-code-box">
+    <div id="card" class="invite-code">
+        &lt;!&ndash;<div class="invite-code-time">1-8&nbsp;&nbsp;&nbsp;12:00</div>&ndash;&gt;
+        <div class="code-top">
+            <img src="../../images/common/logo@1x.png">
+            诚挚邀请加入
+        </div>
+        <div class="user-header">
+            <div>&lt;!&ndash;'+docDatas.name+'&ndash;&gt;</div>
+            <div></div>
+        </div>
+        <div class="code-content">
+            <h3>&lt;!&ndash;'+docDatas.dept_name+'&nbsp;&nbsp;'+docDatas.title+'&ndash;&gt;心内科&nbsp;&nbsp;主治医师</h3>
+            <p>&lt;!&ndash;'+docDatas.hospital_name+'&ndash;&gt;中国人民解放军301医院</p>
+            <p>&lt;!&ndash;'+docDatas.phone+'&ndash;&gt;13845454545</p>
+            <div class="code">
+                <img width="100%" :src="docDatas.qrcode" alt="">
+            </div>
+            <s>受邀医生微信扫一扫</s>
+        </div>
+        <div class="from-doc" >
+            <h3 class="fleft">来自：</h3>
+            <p class="fleft">韩主任&nbsp;&nbsp;心血管内科<br>中国人民解放军301医院<br><time>2016-12-15&nbsp;&nbsp;19:29</time></p>
+        </div>
+    </div>
+</div>-->
+</body>
+<style>
+</style>
+<!--<script>
+/*生成图片*/
+html2canvas($("#card"), {
+    onrendered: function (canvas) {
+        var url = canvas.toDataURL();
+        var img = new Image;
+        img.src = url;
+        console.log(url)
+        var style = {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            width:'2.94rem',
+            transform: 'translate(-50%,-50%)',
+            '-webkit-transform': 'translate(-50%,-50%)',
+            display: 'block',
+            'z-index': 999
+        }
+        for (var i in style) {
+            img.style[i] = style[i];
+        }
+        $('body').append(img);
+        $("#card").css('display', 'none');
+        window.removeLoading();
+    }
+});
+</script>-->
+<script>
+    var myDate = new Date();
+    var nvite_id = location.hash.replace('#', '')
+    $(function () {
+        $.post(ajaxUrl + '/v1_3/wx/doctor/read_details', {
+            invite_id: nvite_id
+        }, function (data) {
+            data = JSON.parse(data);
+            console.log(this.data);
+            if (data.code == -1) {
+                alert(data.msg)
+            } else {
+                var docDatas = data.datas;
+                var createTime = new Date(docDatas.create_time * 1000);
+                var y = createTime.getFullYear();
+                var m = createTime.getMonth() + 1 < 10 ? '0' + (createTime.getMonth() + 1) : createTime.getMonth() + 1;
+                var d = createTime.getDate() < 10 ? '0' + createTime.getDate() : createTime.getDate();
+                var h = createTime.getHours() < 10 ? '0' + createTime.getHours() : createTime.getHours()
+                var mm = new Date(docDatas.create_time * 1000).getMinutes() < 10 ? '0' + new Date(docDatas.create_time * 1000).getMinutes() : new Date(docDatas.create_time * 1000).getMinutes()
+                var time = y + ' - ' + m + ' - ' + d + '&nbsp;&nbsp;' + h + ':' + mm
+                var html = '<div class="invite-code-box">\
+                        <div id="card" class="invite-code">\
+                        <div class="code-top">\
+                        <img src="../../images/common/logo@1x.png">\
+                        诚挚邀请加入\
+                        </div>\
+                        <div class="user-header">\
+                        <div>' + docDatas.name + '</div>\
+                        <div></div>\
+                        </div>\
+                        <div class="code-content">\
+                        <h3>' + docDatas.dept_name.replace(' ', '') + '&nbsp;' + docDatas.title.replace(' ', '') + '</h3>\
+                <p>' + docDatas.hospital_name + '</p>\
+                <p>' + docDatas.phone + '</p>\
+                <div class="code">\
+                        <img width="100%" src=' + ajaxUrl + '/' + docDatas.qrcode + ' alt="">\
+                        </div>\
+                        <s>受邀医生微信扫一扫</s>\
+                        </div>\
+                        <div class="from-doc" >\
+                        <h3 class="fleft">来自：</h3>\
+                <p class="fleft">'+docDatas.invite_name+'&nbsp;&nbsp;'+docDatas.invite_dept_name+'<br>'+docDatas.invite_hospital_name+'<br><time>' + time + '</time></p>\
+            </div>\
+            </div>\
+                </div>'
+                console.log(data)
+                var img = new Image();
+                $('body').append(html);
+                img.src = ajaxUrl + '/' + docDatas.qrcode;
+                img.onload = function () {
+                    /*生成图片*/
+                    html2canvas($("#card"), {
+                        onrendered: function (canvas) {
+                            var url = canvas.toDataURL();
+                            var img = new Image;
+                            img.src = url;
+                            console.log()
+                            var style = {
+                                position: 'absolute',
+                                top: '50%',
+                                left: '50%',
+                                width: '2.94rem',
+                                transform: 'translate(-50%,-50%)',
+                                '-webkit-transform': 'translate(-50%,-50%)',
+                                display: 'block',
+                                'z-index': 999
+                            }
+                            for (var i in style) {
+                                img.style[i] = style[i];
+                            }
+                            $('body').append(img);
+                            $("#card").css('display', 'none');
+                            window.removeLoading();
+                        }
+                    });
+                }
+            }
+        })
+    })
+</script>
+</html>

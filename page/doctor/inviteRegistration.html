@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <title>我的邀请</title>
+    <link href="../../css/common/wyn.css" rel="stylesheet" type="text/css">
+    <link href="../../css/common/common.css" rel="stylesheet" type="text/css">
+    <link href="../../css/doctor/my-invitation.css?3" rel="stylesheet" type="text/css">
+    <script src="../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="../../js/common/wyn-plugin-library.js" type="text/javascript"></script>
+    <script src="../../js/common/common.js?1" type="text/javascript"></script>
+    <script src="../../js/common/vue.js" type="text/javascript"></script>
+</head>
+<script>
+    wyn.init.page()
+</script>
+<body class="">
+<div class="doc-box">
+
+    <ul class="doc-nav">
+        <li class="touch-feedback">
+            <a onclick="location.replace('./myInvitation.html')">待注册</a>
+        </li>
+        <li class="touch-feedback active">
+            <a onclick="location.replace('./inviteRegistration.html')">已邀请</a>
+        </li>
+    </ul>
+
+    <!--空列表时显示-->
+    <div v-if="noList" class="no-list">
+        <img src="../../images/doctor/myInvitation-no-list-bg.png" alt="">
+        <p>暂无邀请码</p>
+        <div class='btn-submit'>
+            <button type="button" @click="add">去邀请</button>
+        </div>
+    </div>
+
+    <!--有内容时-->
+    <div v-else class="doc-invitation-list doc-invited">
+        <div v-for="item in invite_list" v-if="item.status!=1" class="invitation-item">
+            <div class="invitation-item-icon" v-text="item.name">马可波罗</div>
+            <div class="invitation-item-content">
+                <div class="touch-edit-map">
+                    <h3>
+                        <s>{{item.dept_name}}&nbsp;/&nbsp;{{item.title}}</s>
+                        <span>{{item.create_time*1000 |createTime}}</span>
+                    </h3>
+                    <p v-text="item.hospital_name">中国人民解放军301医院</p></div>
+                <ul class="invitation-item-set-btn">
+                    <li class="icon-phone" v-text="item.phone">13843118888</li>
+                    <li class="invited-not-pass" :class="'status'+item.status"><span>{{item.status |status}}</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="btn-submit ">
+            <button class="doc-bc" type="button" @click="add">邀请医生</button>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $(function () {
+        new Vue({
+            el: '.doc-box',
+            data: {
+                invite_list: [],
+                noList: true
+            },
+            filters: {
+                status: function (val) {
+                    if (val == 2) {
+                        return '待审核'
+                    } else if (val == 3) {
+                        return "审核成功"
+                    } else if (val == 4) {
+                        return '未通过'
+                    }
+                },
+                createTime: function (val) {
+                    var date = new Date(parseInt(val))
+//                    var y = date.getYear();
+                    var m = date.getMonth() < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+                    var d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+                    var h = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+                    var mm = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+                    return m + '-' + d + '  ' + h + ':' + mm
+                },
+            },
+            mounted: function () {
+                this.$nextTick(function () {
+                    var _this = this;
+                    $.post(ajaxUrl + '/v1_3/wx/doctor/invite_list', function (data) {
+                        data = JSON.parse(data)
+                            _this.invite_list = data.datas;
+                            for (var i in data.datas) {
+                                if (data.datas[i].status == 2 || data.datas[i].status == 3 || data.datas[i].status == 4) {
+                                    _this.noList = false;
+                                }
+                            }
+                        setTimeout(function(){window.removeLoading()},500)
+                    })
+                })
+            }
+
+            ,
+            methods: {
+                add: function () {
+                    location.href = './addInvite.html'
+                }
+            }
+        })
+    })
+</script>
+</html>

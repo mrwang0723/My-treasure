@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <title>个人信息</title>
+    <link href="../../../css/common/wyn.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/common/common.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/user/userInfo/userInfo.css" rel="stylesheet" type="text/css">
+    <script src="../../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="../../../js/common/vue.js" type="text/javascript"></script>
+    <script src="../../../js/common/wyn-plugin-library.js" type="text/javascript"></script>
+    <script src="../../../js/common/common.js" type="text/javascript"></script>
+    <script src="../../../js/common/mobileFix.mini.js"></script>
+    <script src="../../../js/common/exif.js"></script>
+    <script src="../../../js/common/lrz.js"></script>
+    <script src="../../../js/user/userInfo/userInfo.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="ueseInfo" class="user-info-box">
+    <div class="edit-text-box" :class="{show : Input}" @touchmove.prevent="">
+        <p>{{inputPopText}}</p>
+        <label>
+            <input style="padding-right: 44px;" :placeholder="placeholderText" name="edit-name"
+                   v-model="inputText" />
+            <span class="icon-small-close"></span>
+            <!--@click="clearInputText"-->
+        </label>
+        <h5 v-if="postObj=='urgen_phone'" style="font-size: 14px;color:#ff8833;padding-left: 12px; margin-top: 14px;">允许粘贴过来的号码包含&nbsp;&nbsp;"空格"&nbsp;&nbsp;和&nbsp;&nbsp;"-"</h5>
+
+        <div class="btn-submit">
+            <button type="button" class="btn-bottom  bor-radius-0" @click.prevent="post" name="edit-submit">完成</button>
+        </div>
+    </div>
+    <ul class="user-header user-info-item">
+        <li class="icon-back">
+            <s>头像</s>
+            <p>
+                <img class="header-img" :style="imgStyle" :src="!!userDatas.avatar?userDatas.avatar:'../../../images/common/user-info-default-head.png'"/>
+            </p>
+            <input type="file" accept="image/jpg,image/jpeg,image/png,image/gif"  @change="setHead($event)">
+        </li>
+    </ul>
+    <ul class="user-info-item">
+        <li class="user-name icon-back" @click.stop="showInput('name');inputPopText='真实姓名'">
+            <s>真实姓名</s>
+            <i>*</i>
+            <input class="input-pop-text" type="button" v-show="!Boolean(userDatas.name)" value="请填写姓名">
+            <input type="button" class="input-import-text"  v-show="Boolean(userDatas.name)"
+                   v-model="userDatas.name">
+        </li>
+
+        <li class="user-name icon-back" @click.stop="showInput('nickname');inputPopText='昵称'"><!--@click.stop="showInput('username')"-->
+            <s>昵称</s>
+            <input class="input-pop-text" type="button" v-show="!Boolean(userDatas.nickname)" value="请填写昵称">
+            <input type="button" class="input-import-text" v-show="Boolean(userDatas.nickname)"
+                   v-model="userDatas.nickname">
+        </li>
+        <li class="icon-back user-sex" @click="getSelect(sexType,'sex')">
+            <s>性别</s>
+            <i>*</i>
+            <input class="input-pop-text" type="button" v-show="!!!userDatas.sex" value="请设置性别">
+            <button class="input-import-text web-b-f-1" v-show="userDatas.sex" v-text="sexData.dataText"></button>
+        </li>
+        <li class="icon-back user-date">
+            <s>出生日期</s>
+            <i>*</i>
+            <input type="date" id="user_date" @change="setBirthday($event)" :value="!!userDatas.birthday?userDatas.birthday:'1970-01-01'" name="user-date">
+            <input class="input-pop-text" type="button" v-show="!userDatas.birthday" value="请设置您的生日">
+            <input class="input-import-text" type="button" v-show="userDatas.birthday" v-model="userDatas.birthday">
+        </li>
+
+        <li class="icon-back user-card" @click.stop="showInput('id_card');inputPopText='身份证号'">
+            <s>身份证号</s>
+            <i>*</i>
+            <input type="button" class="input-pop-text" value="请填写身份证号" v-show="!userDatas.id_card">
+            <input type="button" class="input-import-text" v-show="userDatas.id_card" v-model="userDatas.id_card">
+        </li>
+
+        <li class="icon-back user-height" @click="goHeight">
+            <s>身高</s>
+            <input class="input-pop-text" type="button" v-if="!!!userDatas.body_height" value="请设置身高">
+            <input class="input-import-text" v-else type="button" :value="userDatas.body_height |height">
+        </li>
+
+        <li class="icon-back user-weight" @click="goWeight">
+            <s>体重</s>
+            <input class="input-pop-text" v-if="!!!userDatas.body_weight" type="button" value="请设置体重">
+            <input class="input-import-text" v-else type="button" :value="userDatas.body_weight |weight">
+        </li>
+    </ul>
+
+    <ul class="user-info-item">
+
+        <li class="icon-back user-name" @click.stop="showInput('urgen_name');inputPopText='紧急联系人'">
+            <s>紧急联系人</s>
+            <i>*</i>
+            <input class="input-pop-text" v-show="!userDatas.urgen_name" type="button" value="请填写紧急联系人">
+            <input class="input-import-text" v-show="userDatas.urgen_name" type="button" v-model="userDatas.urgen_name">
+        </li>
+
+        <li class="icon-back user-name" @click.stop="showInput('urgen_phone');inputPopText='紧急联系人电话'">
+            <s>紧急联系人电话</s>
+            <i>*</i>
+            <input class="input-pop-text" v-show="!userDatas.urgen_phone" type="button" value="紧急联系人电话">
+            <input class="input-import-text" v-show="userDatas.urgen_phone" type="button"
+                   v-model="userDatas.urgen_phone">
+
+        </li>
+    </ul>
+    <ul class="user-info-item">
+
+        <li class="icon-back user-name" @click.stop="getSelect(nationType,'nation')">
+            <s>民族</s>
+            <input type="button" v-show="!userDatas.nation" class="input-pop-text" value="请设置民族">
+            <input type="button" v-show="userDatas.nation" class="input-import-text" v-model="userDatas.nation">
+        </li>
+
+        <li class="icon-back user-name" @click="getSelect(marryStatusType,'marry_status')">
+            <s>婚姻状况</s>
+            <input type="button" v-if="userDatas.marry_status===''" class="input-pop-text" value="请选择婚姻状况">
+            <button v-else class="web-b-f-1">{{marryData.dataText}}</button>
+        </li>
+
+        <li class="icon-back user-name" @click.stop="getSelect(occupationType,'occupation')">
+            <s>职业</s>
+            <input type="button" v-show="!userDatas.occupation" class="input-pop-text" value="请选择职业">
+            <input type="button" v-show="userDatas.occupation" class="input-import-text" v-model="userDatas.occupation">
+        </li>
+
+        <li class="icon-back user-name" @click.stop="getSelect(educationType,'education')">
+            <s>文化程度</s>
+            <input v-show="!userDatas.education" type="button" class="input-pop-text" value="请设置文化程度">
+            <input v-show="userDatas.education" type="button" class="input-import-text" v-model="userDatas.education">
+        </li>
+    </ul>
+
+    <ul class="user-info-item">
+        <a href="../shippingAddress/main.html">
+            <li class="icon-back user-name">
+                <s>收货地址</s>
+            </li>
+        </a>
+    </ul>
+
+    <div class="edit-list-box fixed" style="-webkit-overflow-scrolling: touch" :class="{show: Select}">
+        <ul class="edit-list">
+            <li v-for="item in selectList" @click.stop="postSelect(item)" v-text="item.dataText">
+            </li>
+        </ul>
+    </div>
+
+    <div class="edit-list-box select-sex-box fixed" style="-webkit-overflow-scrolling: touch"  :class="{show: sexSelect}" @touchmove.stop="">
+        <ul class="edit-list">
+            <li @click="userDatas.sex=item.dataCode;postSelect(item)" v-for="item in sexType" >
+                <img :src="item.dataImg" >
+                <p v-text="item.dataText"></p>
+                <span :class="{active: userDatas.sex==item.dataCode}" class="icon-right"></span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<style>
+
+    .select-sex-box li{
+        height: auto;
+        border: 0;
+    }
+    .select-sex-box li img{
+        display: block;
+        margin:50px auto 16px;
+        border-radius: 100%;
+    }
+    .select-sex-box span{
+        margin-top:20px;
+        font-size: 24px;
+        display: block;
+        height: 24px;
+    }
+    .select-sex-box span::before{
+        left: 50%;
+        -webkit-transform: translate(-50%,-50%);
+        -moz-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        -o-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+    }
+    .select-sex-box span.active{
+        color: #6ece74;
+    }
+    .select-sex-box p{
+        font-size:25px;
+        color:#474747;
+    }
+</style>
+</body>
+</html>

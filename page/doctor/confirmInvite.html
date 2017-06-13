@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <title>确认邀请</title>
+    <script src="../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="../../js/common/vue.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var date = Date.now();
+        var date = Date.now();
+        var str = '<link href="../../css/common/wyn.css?' + date + '" rel="stylesheet" type="text/css">'
+        str += '<link href="../../css/common/common.css?' + date + '" rel="stylesheet" type="text/css">'
+        str += '<link href="../../css/doctor/my-invitation.css?' + date + '" rel="stylesheet" type="text/css">'
+        str += '<script src="../../js/common/wyn-plugin-library.js?' + date + '" type="text/javascript"><\/script>'
+        str += '<script src="../../js/common/common.js?' + date + '" type="text/javascript"><\/script>'
+        str += '<script src="../../js/common/directive.js?' + date + '" type="text/javascript"><\/script>'
+        str += '<script src="../../js/doctor/confirmInvite.js?' + date + '" type="text/javascript"><\/script>'
+
+        $('head').append(str);
+        wyn.init.page();
+    </script>
+</head>
+<body style="padding-bottom: 60px;">
+<div class="confirm-invite">
+    <!--选择科室-->
+    <div class="edit-list-box fixed z-999" :class="{show: dept}">
+        <ul class="edit-list">
+            <li v-for="item in docDatas.deptList" @click.stop="setDept(item)" v-text="item.dept_name">
+            </li>
+        </ul>
+    </div>
+
+    <!--选择职称-->
+    <div class="edit-list-box fixed z-999" :class="{show: title}">
+        <ul class="edit-list">
+            <li v-for="item in titleList" @click.stop="setTitle(item)" v-text="item">
+            </li>
+        </ul>
+    </div>
+    <!--
+    <div class="edit-text-box" :class="{show : title}" @touchmove.prevent="">
+        <p>职称</p>
+        <label>
+            <input v-blur="title" style="padding-right: 44px;" placeholder="请填写职称" :value="docDatas.title" v-model="docDatas.title">
+            <span class="icon-small-close"></span>
+        </label>
+        <div class="btn-submit">
+            <button type="button" class="btn-bottom doc-bc  bor-radius-0" @click.prevent="setTitle" name="edit-submit">
+                完成
+            </button>
+        </div>
+    </div>-->
+
+    <ul class="input-form-box">
+        <li class="input-text webkitBox">
+            <p>姓名：<s v-text="docDatas.name"></s></p>
+        </li>
+        <li class="input-text webkitBox">
+            <p>性别：<s>{{docDatas.sex |sex}}</s></p>
+        </li>
+        <li class="input-text webkitBox">
+            <p>医院：<s v-text="docDatas.hospital_name"></s></p>
+        </li>
+        <li class="input-text webkitBox">
+            <p>手机号：<s v-text="docDatas.phone"></s></p>
+        </li>
+    </ul>
+    <div class="pop-text">以上信息无法修改，如有误请联系邀请您的医生</div>
+    <ul class="input-form-box">
+        <li class="input-text webkitBox" @click="dept=true">
+            <p>科室</p>
+            <label>
+                <input class="input-pop-text" type="button" v-if="!!!deptActive.dept_name" value="去选择科室">
+                <input class="c-47" v-else :value="deptActive.dept_name" type="button">
+            </label>
+            <span class="icon-go"></span>
+        </li>
+        <li class="input-text webkitBox" @click="title=true">
+            <p>职称</p>
+            <label>
+                <input class="input-pop-text" v-if="!!!docDatas.title" type="button" value="去填写职称">
+                <input class="c-47" name="doc-hospital" v-else type="button" v-model="docDatas.title">
+            </label>
+            <span class="icon-go"></span>
+        </li>
+        <li class="input-text confirm-code  user-code icon-shield">
+            <label><input style="width:40%" name="confirm-code" placeholder="请输入验证码" type="tel" maxlength="4" v-model="code" />
+                <button class="doc-bc get-code" type="button" :disabled="codeDisabled" @click="getCode">获取验证码</button>
+                <span class="icon-small-close" @touchend="postDisabled=true;code=''"></span>
+            </label>
+        </li>
+    </ul>
+    <div class="btn-submit">
+        <button name="user-submit" @click="postData" class="btn-bottom doc-bc bor-radius-0" :disabled="postDisabled" type="button">确认</button>
+    </div>
+</div>
+
+</body>
+</html>

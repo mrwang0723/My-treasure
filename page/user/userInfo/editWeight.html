@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="en">
+    <script src="../../../js/common/zpto.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <title>设置体重</title>
+    <link href="../../../css/common/wyn.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/common/common.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/common/weui.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/user/userInfo/userInfo.css" rel="stylesheet" type="text/css">
+    <script src="../../../js/common/vue.js" type="text/javascript"></script>
+    <script src="../../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="../../../js/common/wyn-plugin-library.js" type="text/javascript"></script>
+    <script src="../../../js/common/common.js" type="text/javascript"></script>
+    <script src="../../../js/user/userInfo/setWeight.js" type="text/javascript"></script>
+    <script>
+        wyn.init.page()
+        /*var date = new Date();
+        var script = document.createElement('script');
+        script.setAttribute('src', '../../../js/user/userInfo/userInfo.js?'+date.getMilliseconds())
+        document.head.appendChild(script)*/
+    </script>
+</head>
+<body onload="wyn.init.bodyHeightMax()">
+    <div class="edit-weight-box edit-box" id="weight">
+            <div class="person-img woman">
+                <img v-if="sex" width=".72rem" src="../../../images/userInfo/preson-img.png">
+                <img v-else style="width:98px" src="../../../images/userInfo/preson-woman.png">
+            </div>
+
+            <div class="edit-show-num">
+                <s>{{weightDefault}}</s>千克
+            </div>
+            <div class="edit-set-roll">
+                <div class="edit-set-left edit-set-weight-left">
+                    <s class="icon-back"></s>
+                    <p>微调-</p>
+                </div>
+                <div class="edit-set-content">
+                    <div class="edit-set-content-num-box">
+                        <ul class="edit-set-content-num">
+                            <li v-for="item in weightNum">{{item}}</li>
+                        </ul>
+                    </div>
+                    <div class="edit-set-content-scale"></div>
+                    <p>左右滑动</p>
+
+                </div>
+                <div class="edit-set-right edit-set-weight-right">
+                    <s class="icon-back"></s>
+                    <p>微调+</p>
+                </div>
+            </div>
+            <div class="btn-submit">
+                <button type="button" @click="setWeight()" name="set-weight-submit">完成</button>
+            </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+.login-main-box{background: url('../../images/common/bg-login.png') repeat-y -30px center;}
+
+.logo-box {
+    padding-top: 20px;
+}
+
+.logo-box span {
+    width: 136px;
+    height: 136px;
+    margin: 0 auto;
+    display: block;
+    background: url('../../images/common/logo@1x.png') no-repeat center center;
+    background-size: 100%;
+}
+
+.login-prompt a{
+    color: #ff9933;
+    font-size:14px;
+    float: right;
+}
+
+

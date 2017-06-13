@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <title>我的邀请</title>
+    <link href="../../css/common/wyn.css" rel="stylesheet" type="text/css">
+    <link href="/public-platform/css/common/common.css" rel="stylesheet" type="text/css">
+    <link href="../../css/doctor/my-invitation.css" rel="stylesheet" type="text/css">
+    <script src="../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="/public-platform/js/common/wyn-plugin-library.js" type="text/javascript"></script>
+    <script src="../../js/common/common.js" type="text/javascript"></script>
+    <script src="../../js/common/vue.js" type="text/javascript"></script>
+</head>
+<script>
+    wyn.init.page()
+</script>
+<body class="">
+<div class="doc-box">
+    <ul class="doc-nav">
+        <li class="touch-feedback active">
+            <a onclick="location.replace('./myInvitation.html')">待注册</a>
+        </li>
+        <li class="touch-feedback">
+            <a onclick="location.replace('./inviteRegistration.html')">已邀请</a>
+        </li>
+    </ul>
+
+    <!--空列表时显示-->
+
+    <div v-if="noList" class="no-list">
+        <img src="../../images/doctor/myInvitation-no-list-bg.png" alt="">
+        <p>暂无邀请码</p>
+        <div class='btn-submit'>
+            <button class="" type="button" @click="add">去邀请</button>
+        </div>
+    </div>
+    <div v-else class="doc-invitation-list">
+        <div v-for="(item,index) in invite_list" class="invitation-item" v-if=" item.status==1">
+            <div class="invitation-item-icon" @click="edit(item.invite_id)" v-text="item.name">我个字</div>
+            <div class="invitation-item-content">
+                <div class="touch-edit-map" @click="edit(item.invite_id)">
+                    <h3>
+                        <s>{{item.dept_name}}&nbsp;/&nbsp;{{item.title}}</s>
+                        <span>{{item.create_time*1000 |createTime}}</span>
+                    </h3>
+                    <p class="icon-go" v-text="item.hospital_name">中国人民解放军301医院</p></div>
+                <ul class="invitation-item-set-btn">
+                    <li class="icon-phone" v-text="item.phone">13843118888</li>
+                    <li @click="seeCode(item.invite_id)" class="icon-two-code">邀请码</li>
+                    <li @click="del(item.invite_id,index)" class="icon-delete">删除</li>
+                </ul>
+            </div>
+        </div>
+        <div class="btn-submit ">
+            <button class="doc-bc" @click="add" type="button">邀请医生</button>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    wyn.reloadPage();
+    $(function () {
+        new Vue({
+            el: '.doc-box',
+            data: {
+                invite_list: [],
+            },
+            filters: {
+                createTime: function (val) {
+                    var date = new Date(parseInt(val))
+//                    var y = date.getYear();
+                    var m = date.getMonth() < 9 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+                    var d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+                    var h = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+                    var mm = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+                    return m + '-' + d + '  ' + h + ':' + mm
+                },
+            },
+            mounted: function () {
+                this.$nextTick(function () {
+                    var _this = this;
+                    $.post(ajaxUrl + '/v1_3/wx/doctor/invite_list', function (data) {
+                        data = JSON.parse(data)
+                        if (data.code == -1) {
+                            popLogin();
+                        }else {
+                            _this.invite_list = data.datas;
+                            for (var i in _this.invite_list) {
+                                if (_this.invite_list[i].status == 1) {
+                                    _this.noList = false;
+                                }
+                            }
+                            setTimeout(function () {
+                                window.removeLoading()
+                            }, 500)
+                        }
+
+                    })
+                })
+            },
+            methods: {
+                seeCode: function (id) {
+                    location.href = './inviteCode.html#' + id
+                },
+                del: function (id, index) {
+                    var _this = this
+                    wyn.create.selectPrompt('确定删除？', function (obj) {
+                        wyn.bind.touchEnd(obj, function () {
+                            $.post(ajaxUrl + '/v1_3/wx/doctor/invite_delete', {
+                                invite_id: id
+                            }, function (data) {
+                                data = JSON.parse(data)
+                                if (data.code == -1) {
+                                    alert(data.msg)
+                                } else {
+                                     wyn.create.maskText('删除成功',{padding:'10px 15px',top:'50%'},null,1000)
+                                    _this.invite_list.splice(index, 1)
+                                }
+                            })
+                        })
+                    });
+
+                },
+                edit: function (id) {
+                    location.href = './addInvite.html#' + id;
+                },
+                add: function () {
+                    location.href = './addInvite.html'
+                }
+            },
+            computed: {
+                noList: function () {
+                    var off = true;
+                    for (var i in this.invite_list) {
+                        if (this.invite_list[i].status == 1) {
+                            off = false;
+                        }
+                    }
+                    return off
+                }
+            }
+        })
+    })
+</script>
+</html>

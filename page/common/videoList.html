@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>视频中心</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <link href="../../css/common/wyn.css" rel="stylesheet" type="text/css">
+    <link href="../../css/common/common.css" rel="stylesheet" type="text/css">
+    <script src="../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="../../js/common/wyn-plugin-library.js?9999999" type="text/javascript"></script>
+    <script src="../../js/common/vue.js" type="text/javascript"></script>
+    <!--<script src="../../js/common/video.js" type="text/javascript"></script>-->
+</head>
+<script>
+    wyn.init.page()
+</script>
+<body>
+<div class="video-list-box scroll-touch">
+    <ul class="video-list">
+        <li class="video-list-item" v-for="item in videoSrcList">
+            <!--<span class="icon-play" @click="play($event)"></span>-->
+            <p v-text="item.title"></p>
+            <iframe width="100%" height="100%" :src="item.url" frameborder="0" allowfullscreen>
+            </iframe>
+        </li>
+    </ul>
+</div>
+
+<!--<video controls="controls" id="tenvideo_video_player_0" width="100%" height="100%" x-webkit-airplay="true" webkit-playsinline="" playsinline="true" preload="none" poster="//i.gtimg.cn/qqlive/images/20150608/black.png" src="http://ugcws.video.gtimg.com/flv/24/49/h0507t18zae.m701.mp4?vkey=458C58B69A5805533B340F053D81E3649C8EAF411FB4D755157496D018E29C3F582E958494FC66D103B5DFE54FA63A1400DA95DDDB3CD412857459356E6060DB1A21090CC8E3DEA96E83E795FF05F8685A9CCB70EA179280&amp;br=29&amp;platform=2&amp;fmt=auto&amp;level=0&amp;sdtfrom=v3010&amp;guid=4357de02fb8bbf55344267c6462e8100"></video>-->
+</body>
+<script>
+    var videoSrcList = [
+        {
+            url: 'https://v.qq.com/iframe/player.html?vid=h0507t18zae&tiny=0&auto=0',
+            title: '康乃心12导心电记录仪操作视频示教',
+            bg: '../../images/common/img_spzx_ydtu1@2x.png'
+        },
+        {
+            url: 'https://v.qq.com/iframe/player.html?vid=e0507ma8ghb&tiny=0&auto=0',
+            title: '康乃心12导心电记录仪操作示教（录屏版）',
+            bg: '../../images/common/img_spzx_ydtu2@2x.png'
+        },
+        {
+            url: 'https://v.qq.com/iframe/player.html?vid=k0507eox1f8&tiny=0&auto=0',
+            title: '康乃心-流年',
+            bg: '../../images/common/img_spzx_ydtu3@2x.png'
+        },
+        {
+            url: 'https://v.qq.com/iframe/player.html?vid=y0507wppyuq&tiny=0&auto=0',
+            title: '康乃心-科技助力，健康生活',
+            bg: '../../images/common/img_spzx_ydtu4@2x.png'
+        },
+    ]
+
+    new Vue({
+        el: '.video-list-box',
+        data: {
+            videoSrcList: videoSrcList,
+            videoSum: 0
+        },
+        mounted: function () {
+            this.$nextTick(function () {
+                var _this = this;
+                for (var i = 0; i < $('.video-list-box li').length; i++) {
+                    $('.video-list-box li').eq(i).css('height', $('.video-list-box li').eq(i).outerWidth(true) * .565)
+                }
+                ;
+                for (var i in videoSrcList) {
+                    var iframe = document.createElement("iframe");
+                    iframe.src = videoSrcList[i].url;
+                    iframe.className = 'hide';
+                    if (iframe.attachEvent) {
+                        iframe.attachEvent("onload", function () {
+                            _this.videoSum++;
+                            console.log(_this.videoSum)
+                        });
+                    } else {
+                        iframe.onload = function () {
+                            _this.videoSum++;
+                            console.log(_this.videoSum)
+                        };
+                    }
+                    $('body').append($(iframe))
+                }
+
+            })
+        },
+        methods: {
+            play: function (e) {
+                var obj = $(e.target).parents('li').find('video')[0];
+                obj.play();
+            }
+        },
+        watch: {
+            'videoSum': function () {
+                if (this.videoSum == this.videoSrcList.length) {
+                    $('.hide').remove();
+                    window.removeLoading();
+                }
+            }
+        }
+    })
+    $(function () {
+        window.addEventListener("resize", function () {
+            // 得到屏幕尺寸 (内部/外部宽度，内部/外部高度)
+            if ($('.video-list-box li')[0]) {
+                for (var i = 0; i < $('.video-list-box li').length; i++) {
+                    $('.video-list-box li').eq(i).css('height', $('.video-list-box li').eq(i).outerWidth(true) * .565)
+                }
+            }
+
+        }, false);
+    })
+
+    //加载动画
+    window.satrtLoading = function () {
+        var box = document.createElement('div');
+        box.id = 'loading-box';
+        style = {
+            'position': 'fixed',
+            width: '100%',
+            height: document.documentElement.clientHeight + 'px',
+            left: 0,
+            top: 0,
+            background: '#fff no-repeat center 45% url("/public-platform/images/common/loading.gif")',
+            'z-index': '99999999999999',
+            "background-size": '80px'
+        };
+        $(box).on('touchstart', function () {
+            event.preventDefault();
+        });
+        for (var i in style) {
+            box.style[i] = style[i];
+        }
+        document.documentElement.appendChild(box);
+    }
+    //移出加载动画
+    window.removeLoading = function () {
+        var box = document.getElementById('loading-box');
+        document.documentElement.removeChild(box);
+    }
+    window.satrtLoading();
+</script>
+<style>
+    .video-list-box li {
+        margin-bottom: .1rem;
+        position: relative;
+    }
+
+    .video-list-box li p {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        text-indent: .12rem;
+        line-height: .4rem;
+        font-size: .16rem;
+        color: #ffffff;
+        background: rgba(0, 0, 0, .5)
+    }
+
+    /*.video-list-box li video{
+        width:100%;
+        height:100%;
+    }*/
+    .video-list-box li span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 20;
+    }
+
+    .video-list-box li span::before {
+        display: block;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+        text-indent: .04rem;
+        line-height: .42rem;
+        font-size: .2rem;
+        color: #fff;
+        opacity: 0.5;
+        background: #1e1e1e;
+        width: .42rem;
+        height: .42rem;
+        border-radius: 100%;
+    }
+</style>
+</html>

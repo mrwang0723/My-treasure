@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <title>下载康乃心APP</title>
+    <link href="../../css/common/wyn.css" rel="stylesheet" type="text/css">
+    <script src="../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="../../js/common/wyn-plugin-library.js" type="text/javascript"></script>
+    <script src="../../js/common/vue.js" type="text/javascript"></script>
+</head>
+<body onload="wyn.init.bodyHeightMax()">
+<script>
+    wyn.init.page();
+</script>
+<div id="down" :class="[userType.type]">
+    <div style="background: no-repeat bottom center;height:2.4rem;overflow:hidden; background-size:100%" :style="{backgroundImage: userType.bg}">
+        <div :style="{marginTop:'.6rem'}">
+            <img @click="down" :class="['block']" style="margin:auto;width:.8rem" :src="userType.logo">
+        </div>
+    </div>
+
+    <p style="margin-top:.2rem;" :class="['font-20','text-c']" v-html="text"></p>
+
+    <div style="margin-top:.3rem">
+        <a @click="down" v-text="buttonText"></a>
+    </div>
+
+    <div v-show="isAndroid" class="pop-text">
+        <img style="width:3rem"  :src="userType.pop">
+    </div>
+</div>
+</body>
+
+<style>
+    .pop-text{
+        text-align: right;
+        left:0;
+        top:0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 999;
+        background: rgba(0,0,0,.5);
+        padding-right:.16rem;
+        padding-top:.05rem;
+        box-sizing: border-box;
+    }
+    #down{
+        min-height:400px;
+    }
+    a {
+        display: block;
+        margin: auto;
+        border-radius: 100px;
+        width: 192px;
+        height: 46px;
+        line-height: 46px;
+        font-size: 20px;
+
+        letter-spacing: -0.49px;
+        background-color: #fff;
+        text-align: center;
+    }
+    .user p{
+        color: #61cb67;
+    }
+    .doc p{
+        color: #02befd ;
+    }
+    .user a{
+        color: #61cb67;
+        border: 1px solid #61cb67;
+    }
+    .doc a{
+        border:1px solid #02befd;
+        color: #02befd ;
+    }
+</style>
+
+<script type="text/javascript">
+
+    /*进入页面的用户类型*/
+    var type = location.href.indexOf('doctor') == -1 ?
+    {
+        /*会员*/
+        url: wyn.get.client() == 'iphone' ? 'https://itunes.apple.com/us/app/kang-nai-xin-hui-yuan-duan/id1164417225' : 'https://www.cardiocloud.cn/app/member/KNXMember.apk',
+        logo: '../../images/common/down-user-logo.png',
+        bg:'url("../../images/common/down-user-bg.png")',
+        pop:'../../images/common/user-pop.png',
+        type:'user'
+    }:
+    {
+        /*医生*/
+        type:'doc',
+        url: wyn.get.client() == 'iphone' ?  'https://itunes.apple.com/us/app/kang-nai-xin-yi-sheng-duan/id1165219650' : 'http://www.cardiocloud.cn/app/doctor/KNXDoctor.apk',
+        logo: '../../images/common/down-doc-logo.png',
+        pop:'../../images/common/doc-pop.png',
+        bg:'url("../../images/common/down-doc-bg.png")'
+    };
+
+   /*绑定数据*/
+   new Vue({
+        el: '#down',
+        data: {
+            userType: type,
+            buttonText: '下载App',
+            isAndroid:false,
+            text:'精准呵护&nbsp;&nbsp;从心开始'
+        },
+        methods: {
+            down: function () {
+                if(wyn.get.client()=='android'){
+                    if(wyn.judge.isWx()) {
+                        this.isAndroid=true;
+                    }else {
+                        location.href=this.userType.url
+                    }
+                }else{
+                    location.href=this.userType.url;
+                }
+            }
+        }
+    })
+</script>
+</html>

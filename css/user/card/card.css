@@ -1,0 +1,124 @@
+.card-box{
+    width: 270px;
+    height: 436px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,.2);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%,-50%,0);
+    -moz-transform: translate3d(-50%,-50%,0);
+    -ms-transform: translate3d(-50%,-50%,0);
+    -o-transform: translate3d(-50%,-50%,0);
+    transform: translate3d(-50%,-50%,0);
+    text-align: center;
+    background-size:auto 110%;
+    line-height: 1;
+    background-position: center;
+}
+.card-box h4{
+    font-size:16px;
+    letter-spacing:-0.39px;
+    text-align:left;
+    text-indent: 16px;
+    margin-top: 14px;
+    font-weight: bold;
+}
+.card-box .user-header{
+    margin-top: 16px;
+    position: relative;
+    width: 100%;
+}
+.card-box .user-header div{
+    height: 72px;
+    width: 72px;
+    border-radius:100%;
+    display: inline-block;
+    overflow: hidden;
+    background: rgba(0, 0, 0, .5);
+}
+.card-box .user-header::before,.card-box .user-header::after{
+    content:'';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 94px;
+    height: 2px;
+    -webkit-transform: translate3d(0, -50%, 0);
+    -moz-transform: translate3d(0, -50%, 0);
+    -ms-transform: translate3d(0, -50%, 0);
+    -o-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);
+}
+.card-box .user-header::after{
+    left: auto;
+    right: 0;
+}
+.card-box .user-header img{
+    width: 100%;
+}
+.user-name{
+    margin-top:14px;
+    font-size: 16px;
+    height: 16px;
+    font-weight: bold;
+}
+.user-name i{margin-left: 5px;font-weight: bold;}
+.user-phone{
+    font-size: 12px;
+    height: 12px;
+    margin-top: 12px;
+}
+.two-code{
+    width: 160px;
+    height: 160px;
+    margin-top: 30px;
+    display: inline-block;
+}
+.two-code img{
+    width: 100%;
+}
+.card-box p:last-child{
+    font-size: 14px;
+    margin-top: 22px;
+}
+
+.glod-card{
+    background-image: url('../../../images/card/gold-card.png');
+}
+.glod-card *{
+    color:#3f2c01;
+}
+.glod-card .user-phone{
+    color:#978857;
+}
+
+.glod-card .user-header::before,.glod-card .user-header::after{
+    background-color: #3f2c01;
+}
+.jewel-card{
+    background-image: url('../../../images/card/jewel-card.png');
+}
+.jewel-card *{
+    color:#ffeed4;
+}
+.jewel-card .user-phone{
+    color: #918678;
+}
+.jewel-card .user-header::before,.jewel-card .user-header::after{
+    background-color: #ffeed4;
+}
+
+
+.platina-card{
+    background-image: url('../../../images/card/platina-card.png');
+}
+.platina-card *{
+    color:#1a1917;
+}
+.platina-card .user-header::before,.platina-card .user-header::after{
+    background-color: #1a1917;
+}
+.platina-card .user-phone{
+    color: #69665c;
+}

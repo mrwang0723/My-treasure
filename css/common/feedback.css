@@ -1,0 +1,154 @@
+.feekback-photo li span{
+    background-size:100%;
+}
+.feekback-photo li span img{
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+}
+.feekback-photo li div, .feekback-photo li s {
+    display: block;
+    position: relative;
+    border-radius: 10px;
+    margin-left:.23rem;
+}
+.feekback-photo li s,.feekback-photo li div span{
+    display: block;
+    width: .7rem;
+    height: .7rem;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+.feekback-photo li div i {
+    position: absolute;
+    width: .19rem;
+    height: .19rem;
+    right: -.1rem;
+    border-radius: 100%;
+    background: #fff;
+    top: -.1rem;
+}
+
+.feekback-photo li div i::before {
+    color: #0bb20c;
+    font-size: .24rem;
+    border-radius: 100%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    left:50%;
+}
+
+.feekback-photo li s::before, .feekback-photo li s::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    background: #ccc;
+    width: .36rem;
+}
+
+.feekback-photo li s {
+    border: 1px dashed #e1e1e1;
+}
+
+.feekback-photo li > :first-child{
+    margin-left:0;
+}
+.feekback-photo li s::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+    -webkit-transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.feekback-photo li s input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+/*意见反馈页面*/
+.feedback-content li span {
+    display: block;
+    font-size: 14px;
+    color: #717171;
+    letter-spacing: -0.09px;
+    text-align: right;
+    height: .34rem;
+    line-height: .34rem;
+    padding-right: .12rem;
+    background-size: auto 100%;
+}
+
+.feedback-content li {
+    position: relative;
+}
+
+.feedback-content textarea {
+    height: .8rem;
+    display: block;
+    font-size: .16rem;
+    color: #474747;
+    padding: .12rem .12rem 0 0;
+    border: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.feedback-content textarea::-webkit-input-placeholder{
+    color: #c9c9c9;
+}
+.feedback-box h3::before {
+    font-size: .14rem;
+    color: #c7c7cc;
+    left: auto;
+    right: .12rem;
+}
+
+.feedback-box form > div {
+    border-bottom: .1rem solid #eee;
+    font-size: .14rem;
+    color: #717171;
+}
+
+.feedback-box h3 {
+    line-height: .5rem;
+}
+
+.feedback-type li {
+    border-top: 1px solid #e1e1e1;
+    line-height: .48rem;
+    height: .48rem;
+}
+
+.feedback-box h3, .feedback-box li {
+    margin-left: .12rem;
+}
+
+.feedback-box ul {
+    overflow: hidden;
+    width:100%;
+}
+
+.feedback-type input:checked + span::before, .feedback-type input:checked + span {
+    content: '\e913';
+    color: #0bb20c;
+}
+
+.feekback-photo li {
+    margin: .16rem .12rem;
+}
+
+.feedback-type .doc-select input:checked + span::before, .feedback-type .doc-select input:checked + span {
+    color: #2ab8fa ;
+}

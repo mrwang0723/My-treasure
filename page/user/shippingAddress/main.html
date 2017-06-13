@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <title>我的地址</title>
+    <link href="../../../css/common/wyn.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/common/weui.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/common/common.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/user/shippingAddress/shippingAddress.css" rel="stylesheet" type="text/css">
+    <script src="../../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="../../../js/common/jquerySession.js" type="text/javascript"></script>
+    <script src="../../../js/common/wyn-plugin-library.js" type="text/javascript"></script>
+    <script src="../../../js/common/common.js" type="text/javascript"></script>
+    <script src="../../../js/user/shippingAddress/shippingAddress.js" type="text/javascript"></script>
+    <script>
+        $(function(){
+            window.name='noRefresh';
+            wyn.reloadPage();
+        })
+    </script>
+</head>
+
+<body onload="getAddressList()">
+<!--没有地址时的视图-->
+<!--<div class="no-address-box user-input">
+    <div class="address-bg"></div>
+    <p>您还没有设置收货地址哦</br>赶快去添加吧</p>
+    <button type="button" name="btn-address">添加新地址</button>
+</div>-->
+<div class="main-box" id="id">
+    <!--有地址的视图-->
+    <div class="address-list-box">
+        <!--<div class="address-item">
+            <h3><span>名字</span><s>13843114844</s></h3>
+            <p>北京市海淀区医学转化中心转化中心转化中心转化中心转化中心转化中心</p>
+            <ul class="operation-btn-box">
+                <li class="icon-yes active">默认地址</li>
+                <li class="icon-delete">删除</li>
+                <li class="icon-editor">编辑</li>
+            </ul>
+        </div>-->
+    </div>
+</div>
+
+<div class="address-btn hidden" data-id="id" onclick="location.href='addAddress.html'">
+    <!--onclick="location.href='#id'"-->
+    <button type="button">添加新地址</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" charset="UTF-8">
+    <title>意见反馈</title>
+    <link href="../../css/common/wyn.css" rel="stylesheet" type="text/css">
+    <link href="../../css/common/common.css" rel="stylesheet" type="text/css">
+    <link href="../../css/common/feedback.css" rel="stylesheet" type="text/css">
+    <script src="../../js/common/zpto.js" type="text/javascript"></script>
+    <script src="../../js/common/wyn-plugin-library.js?9999999" type="text/javascript"></script>
+    <script src="../../js/common/common.js" type="text/javascript"></script>
+    <script src="../../js/common/vue.js" type="text/javascript"></script>
+    <script src="../../js/common/mobileFix.mini.js"></script>
+    <script src="../../js/common/exif.js"></script>
+    <script src="../../js/common/lrz.js"></script>
+    <script src="../../js/common/feedback.js" type="text/javascript"></script>
+</head>
+<body class="bc-e p-d-48">
+<script>
+    wyn.init.page()
+</script>
+<div id="box" class="feedback-box bc-f">
+    <form>
+        <div class="feedback-type">
+            <h3 class="icon-arrows-bottom">反馈类型 <s :class="['right']" style="float: right;
+    line-height: 50px;margin-right:.4rem" v-text="type.text"></s></h3>
+            <ul style="height:0px" class="select-form-box">
+                <li v-for="(item,index) in feedbackType" class="select-form-item">
+                    <label :class="{'doc-select':isDoc}">
+                        <input v-model="select" :value="item.code" type="radio" name="feedback_type">
+                        <span class="icon-" v-text="item.text" @click="check(item)"></span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="feedback-content">
+            <h3 class="icon-arrows-bottom icon-arrows-top">内容（必填，不超过200个字）</h3>
+            <ul class="select-form-box" style="height:1.15rem;">
+                <li class="t-1-e1">
+                    <textarea name="content" v-model="content" maxlength="200" placeholder="请描述您的问题或建议"></textarea>
+                    <span><s>0</s>/200</span>
+                </li>
+            </ul>
+        </div>
+        <div class="feekback-photo">
+            <h3 class="icon-arrows-bottom icon-arrows-top">添加图片证据（选填，不超过4张）</h3>
+            <ul class="select-form-box t-1-e1" style="height: 1rem;">
+                <li class="webkitBox">
+                    <div v-for="(item,index) in imgs">
+                        <span>
+                        <img :src="item.src" @onload="initImg($event)" :style="item.style">
+                            {{item.style}}
+                            </span>
+                        <i class="icon-close" @click="delImg(index)"></i>
+                    </div>
+                    </span>
+                    <s><input @change="upImg($event)" maxlength="4" multiple type="file" accept="image/jpg,image/jpeg,image/png"
+                              name="feekback-up"></s>
+                </li>
+            </ul>
+        </div>
+        <div @click="post"  class="btn-submit">
+            <button  :disabled="isDisabled" :class="{ 'doc-bc':isDoc}"  class="btn-bottom bor-radius-0" type="button">提交</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

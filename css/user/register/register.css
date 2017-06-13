@@ -1,0 +1,87 @@
+
+/*ҽ����Ϣ*/
+.main-box{
+    padding-top:15px;
+    box-sizing: border-box;
+}
+.doctor-info-box{
+    height:162px;
+    background:url('../../../images/common/doctor-bg.png') center;
+    background-size:100% 100%;
+    display: flex;
+    display:-webkit-flex;
+    padding:18px 14px;
+    border-radius:10px;
+    box-sizing: border-box;
+}
+
+.header-box{
+    padding-right: 14px;
+    text-align: center;
+}
+
+.doctor-header{
+    border-radius: 100%;
+    width: 72px;
+    height:72px;
+    overflow: hidden;
+    background-size: 100%;
+    margin-bottom:12px;
+}
+.doctor-header img{
+    width:100%;
+}
+.doctor-name{
+    font-size: 16px;
+    color: #fff;
+}
+.info-box *{
+    color: #fff!important;
+}
+
+.info-box div *{
+    font-size: 14px;
+}
+
+.info-box div p{
+    opacity: 0.5;
+    text-align: left;
+    line-height: 1.4;
+    margin-top: 6px;
+}
+.info-box div:first-child p{
+    font-size: 12px;
+    margin-top: 10px;
+}
+.info-box div:last-child h3{
+    margin-top: 22px;
+}
+
+.user-input{
+    margin-top: 24px;
+}
+
+.user-input li{
+    margin-top:20px;
+}
+.btn-submit{
+    margin-top:44px;
+}
+.login-prompt {
+    margin-top:12px;
+}
+li.user-code button{
+    top:5px;
+}
+.user-input li span{
+    right:0;
+}
+
+.register-btn{
+    padding:0 12px;
+    position: absolute;
+    box-sizing: border-box;
+    left:0;
+    bottom:12px;
+    width:100%;
+}

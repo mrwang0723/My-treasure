@@ -1,0 +1,577 @@
+
+body {
+    background: #eee;
+}
+
+ul.doc-nav {
+    display: -webkit-box;
+    height: .50rem;
+    background: #fff;
+    border-bottom: .01rem solid #e1e1e1;
+}
+
+.doc-nav li {
+    -webkit-box-flex: 1;
+    position: relative;
+    font-size: .17rem;
+    color: #cccccc;
+    line-height: .50rem;
+    text-align: center;
+}
+
+.doc-nav li:first-child:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: .05rem;
+    bottom: .05rem;
+    width: .01rem;
+    background: #02befd;
+}
+
+.doc-nav li a {
+    display: block;
+    line-height:.50rem;
+}
+
+.doc-nav li.active a {
+    color: #02befd;
+}
+
+/*没有列表时*/
+.no-list {
+    text-align: center;
+}
+
+.no-list img {
+    margin-top: 1.24rem;
+    border: .01rem solid #cccccc;
+    border-radius: .05rem;
+    width: .81rem;
+    height: .51rem;
+}
+
+.no-list p {
+    font-size: .14rem;
+    color: #909090;
+    margin-top: .15rem;
+}
+
+.no-list button {
+    margin-top: .85rem;
+    background: #02befd;
+    border-radius: .05rem;
+    width: 1.76rem;
+    height: .50rem;
+    font-size: .17rem;
+    color: #fff;
+}
+
+/*列表内容*/
+.doc-invitation-list {
+    padding-bottom: .48rem;
+}
+
+.invitation-item {
+    display: -webkit-box;
+    background: #fff;
+    border-bottom: .10rem solid #eee;
+    padding: .15rem .12rem 0 .15rem;
+}
+
+.invitation-item-icon {
+    width: .50rem;
+    height: .50rem;
+    border-radius: 100%;
+    background: #2ab8fa;
+    color: #fff;
+    font-size: .12rem;
+    text-align: center;
+    line-height: .50rem;
+}
+
+.invitation-item-content {
+    -webkit-box-flex: 1;
+    margin-left: .14rem;
+}
+
+.invitation-item-content h3 {
+    height: .16rem;
+    line-height: .16rem;
+    padding-top: .02rem;
+    display: -webkit-box;
+}
+
+
+.invitation-item-content h3 s{
+    display: block;
+    font-size: .16rem;
+    color: #474747;
+    -webkit-box-flex: 1;
+}
+.invitation-item-content h3 span {
+    font-size: .12rem;
+    color: #a9a9a9;
+    display: block;
+}
+
+.invitation-item-content p {
+    font-size: .14rem;
+    color: #a9a9a9;
+    height: .47rem;
+    border-bottom: .01rem solid #e1e1e1;
+    line-height: .47rem;
+    margin-right: -.12rem;
+}
+
+.invitation-item-content p::before {
+    float: right;
+    position: inherit;
+    margin-right: .12rem;
+    font-size: .12rem;
+    color: #c7c7cc;
+}
+
+.invitation-item-set-btn {
+    display: -webkit-box;
+    height: .50rem;
+}
+
+.invitation-item-set-btn li:nth-of-type(2) {
+    -webkit-box-flex: 1;
+    text-align: center;
+    padding: 0;
+}
+
+.invitation-item-set-btn li {
+    line-height: .50rem;
+    font-size: .14rem;
+    color: #a9a9a9;
+    padding-left: .18rem;
+}
+
+.invitation-item-set-btn li::before {
+    font-size: .16rem;
+    color: #ccc;
+}
+
+.icon-two-code::before {
+    position: relative;
+    margin-right: .06rem;
+    top: .01rem;
+}
+
+.doc-invitation-list button {
+    border-radius: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin-top: 0;
+    z-index: 888;
+}
+
+/*
+.invitation-item-set-btn li::before{
+   position: inherit;
+   vertical-align:middle;
+   font-size: 14rem;
+   margin-right:4rem;
+ }*/
+
+/*已邀请*/
+.doc-invited .invitation-item-set-btn li:last-child {
+    text-align: right;
+    position: relative;
+}
+
+.doc-invited .invitation-item-set-btn li:last-child span {
+    display: inline-block;
+    height: .16rem;
+    line-height: .16rem;
+    font-size: .12rem;
+    border-radius: .05rem;
+    width: .56rem;
+    text-align: center;
+    color: #fff;
+}
+
+.status4 span {
+    background-color: #ff9933;
+}
+
+.status2 span {
+    background-color: #02befd;
+}
+
+.status3 span {
+    background-color: #ccc
+}
+
+.invited-pass em {
+    display: inline-block;
+    width: .20rem;
+    height: .20rem;
+    background: url('../../images/doctor/pass-v.png') no-repeat center;
+    position: absolute;
+    background-size: 100%;
+    right: .60rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/*新增邀请*/
+
+.add-invite-input-box {
+    background-color: #fff;
+}
+.add-invite-input-box input::-webkit-input-placeholder{
+    color: #c9c9c9;
+}
+.add-invite-hint {
+    font-size: .12rem;
+    color: #ff8833;
+    text-align: left;
+    padding-left: .36rem;
+    height: .5rem;
+    line-height: .5rem;
+}
+
+.add-invite-hint::before {
+    font-size: .14rem;
+    left: .12rem;
+}
+
+.add-invite-input-box li {
+    display: -webkit-box;
+    height: .50rem;
+    border-bottom: .01rem solid #eee;
+    margin-left: .12rem;
+}
+
+.add-invite-input-box li > * {
+    display: block;
+    line-height: .50rem
+}
+
+.add-invite-input-box li p {
+    font-size: .16rem;
+    color: #474747;
+}
+
+.add-invite-input-box li s {
+    color: #ff8833;
+    font-size: .12rem;
+}
+
+.add-invite-input-box li p s {
+    margin-left: .02rem;
+}
+
+.add-invite-input-box li > label {
+    -webkit-box-flex: 1;
+    text-align: right;
+    display: -webkit-box;
+    margin-right: .12rem;
+}
+
+.add-invite-input-box li label input {
+    display: block;
+    -webkit-box-flex: 1;
+    text-align: right;
+    height: .50rem;
+    border: 0;
+    font-size: .16rem;
+}
+
+.add-invite-input-box li i{
+    font-size: .14rem;
+    color: #a9a9a9;
+}
+.add-invite-input-box li label i{
+    font-size: .16rem;
+    display: block;
+    height: 100%;
+    width:100%;
+    line-height: .50rem;
+}
+
+li.doc-warn-text, li.doc-warning-text {
+    background: #eee;
+    margin-left: -.12rem;
+    padding-left: .12rem;
+    height: .40rem;
+    line-height: .40rem;
+    border-bottom: 0;
+}
+
+li.doc-warn-text i, li.doc-warning-text s {
+    padding-left: .08rem;
+    line-height: .40rem;
+    display: block;
+}
+
+.doc-sex label {
+    position: relative;
+}
+
+li.doc-hospital, li.doc-title {
+    border-bottom: 0;
+}
+.add-invite-input-box input{
+    color: #a9a9a9;
+}
+
+.doc-sex p:last-of-type {
+    -webkit-box-pack: end;
+    display: -webkit-box;
+    -webkit-box-flex: 1;
+    padding-right: .12rem;
+}
+
+.doc-sex label {
+    width: .96rem;
+    display: block;
+}
+
+.doc-sex span {
+    display: block;
+    position: relative;
+    line-height: .50rem;
+    width: .90rem;
+    color: #a9a9a9;
+    text-align: right;
+}
+
+.doc-sex span::before {
+    font-size: .20rem;
+    right: .26rem;
+    top: 52%;
+    left: auto;
+}
+
+.doc-sex input {
+    position: absolute;
+    width: .90rem;
+    top: 0;
+    right: 0;
+    opacity: 0;
+}
+
+.doc-sex input:checked + span::before,.doc-sex input:checked + span{
+    color: #02befd;
+}
+
+.add-invite-box .btn-submit button{
+    margin-top:0;
+}
+
+/*列表*/
+.select-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 99999;
+}
+.search-box .icon-small-close{
+    right:.8rem;
+}
+.search-box s{
+    color: #02befd;
+    font-size: .16rem;
+    line-height: .3rem;
+    display: block;
+    text-align: center;
+}
+
+.search-hint {
+    text-align: center;
+    font-size: .16rem;
+    color: #999;
+    height: .60rem;
+    line-height: .60rem;
+}
+
+.select-hospital-box input::-webkit-input-placeholder{
+    font-size: .14rem;
+}
+
+/*查看邀请码*/
+
+.invite-code-body{
+    background: #1d1d1d;
+}
+.invite-code-box
+{
+    width:100%;
+    height:100%;
+    background: #1d1d1d;
+}
+.invite-code-box .invite-code-time{
+    line-height: 1.2rem;
+    height: 1.2rem;
+    padding-left: .28rem;
+    font-size: .28rem;
+    text-align: left;
+    color: #a9a9a9;
+}
+
+.invite-code{
+    background: #ffffff;
+    border-radius: .4rem;
+    text-align: center;
+    overflow: hidden;
+    /*生成图片 防止图片超出屏幕宽度截取不全*/
+    z-index: -1;
+    position: absolute;
+    left:0;
+    top:0;
+    /*left:50%;*/
+    width:5.88rem;
+    /*top: 50%;*/
+    /*transform: translate(-50%,-50%);*/
+    /*-webkit-transform: translate(-50%,-50%);*/
+}
+
+.user-header{
+    position: absolute;
+    left:0;
+    right:0;
+    top:1.22rem;
+    height:1.4rem;
+}
+.user-header div{
+    position: absolute;
+    left:50%;
+    color: #fff;
+    width: 1.2rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    font-size: .32rem;
+    border-radius:100%;
+    overflow: hidden;
+    top:50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    background: #02befd;
+    z-index: 2;
+}
+.user-header div:last-child{
+    width:1.4rem;
+    height:1.4rem;
+    background: #fff;
+    z-index: 1;
+}
+.invite-code > *{
+    display: block;
+    line-height: 1;
+}
+.code-content > *{
+    color: #fff;
+    font-size: .3rem;
+}
+.code-content h3{
+    margin-top:.2rem;
+}
+.code-content p{
+    margin-top:.16rem;
+}
+.invite-code span{
+    margin-top:.16rem;
+}
+
+.invite-code .code{
+    margin: auto;
+    width:2.24rem;
+    height:2.24rem;
+    margin-top: .48rem;
+    background: #fff;
+}
+.invite-code s{
+    font-size:.24rem;
+    padding:.24rem 0;
+    display: block;
+}
+
+.from-doc{
+    padding:.4rem 0;
+    overflow: hidden;
+}
+.from-doc > *{
+    font-size: .24rem;
+    color: #717171;
+    line-height: 1.6;
+}
+.from-doc h3{
+    text-align: right;
+    width:1.84rem;
+}
+.from-doc p{
+    margin-top:0;
+    text-align: left;
+    margin-left:.24rem;
+}
+.from-doc p time{
+    margin-top:.04rem;
+    display: inline-block;
+}
+.code-content{
+    background: #02befd;
+    margin-top:.7rem;
+    padding-top:.7rem;
+}
+.code-top {
+    font-size: .32rem;
+    color: #02befd;
+    text-align: center;
+    padding: .48rem 0 .34rem;
+}
+
+.code-top img {
+    height: .52rem;
+    vertical-align: middle;
+    margin-right:.14rem;
+}
+/*确认邀请*/
+.confirm-code .get-code {
+    right: .12rem;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.confirm-code span {
+    visibility: hidden;
+}
+
+.confirm-code::before {
+    color: #ccc;
+}
+
+.confirm-code input {
+    text-indent: .24rem;
+    font-size: .16rem;
+}
+
+.pop-text {
+    line-height: .4rem;
+    font-size: .14rem;
+    color: #a9a9a9;
+    padding-left: .12rem;
+}
+
+.confirm-invite ul p {
+    font-size: .16rem;
+    color: #474747;
+}
+
+.confirm-invite ul p s {
+    margin-left: .06rem;
+}

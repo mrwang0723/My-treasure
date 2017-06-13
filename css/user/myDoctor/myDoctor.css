@@ -1,0 +1,179 @@
+/*顶部医生信息*/
+
+.my-doctor-top ul{
+    margin-top:14px;
+    padding-bottom:16px;
+    display: -webkit-box;
+    -webkit-box-pack: center;
+}
+.my-doctor-top ul li{
+    height:14px;
+    width: 14px;
+    font-size: 14px;
+    color:#a9a9a9;
+    margin-left:4px;
+}
+.my-doctor-top ul li.active{
+    color: #ffd932;
+}
+.my-doctor-top span{
+    font-size:12px;
+    color:#fff;
+}
+
+.my-doctor-top p{
+    font-size:14px;
+    color:#fff;
+    margin-top:16px;
+    margin-bottom:8px;
+}
+.user-head{
+    width:70px;
+    height:70px;
+    border-radius:100%;
+    margin:30px auto 0;
+    overflow: hidden;
+}
+.user-head img{
+    width: 100%;
+    height:100%;
+}
+.my-doctor-top h3{
+    padding-top:12px;
+    font-size:16px;
+    color:#fff;
+}
+.my-doctor-top{
+    position: relative;
+    line-height: 1;
+    background: url('../../../images/common/doctor-bg.png') no-repeat center;
+    background-size:110% 110%;
+    text-align: center;
+}
+.my-doctor-top a{
+    padding-right:16px;
+    position: absolute;
+    right:12px;
+    bottom:18px;
+    font-size:14px;
+    color:#fff;
+}
+.my-doctor-top a::before{
+    right: 0;
+    margin-top:1px;
+    font-size:12px;
+    left: auto;
+    -webkit-transform: translate(0,-50%);
+    transform: translate(0,-50%);
+}
+
+/*在线咨询*/
+.my-doctor-middle-list li s{
+    margin-top:10px;
+    text-align: center;
+    display: block;
+    font-size:14px;
+    color:#a9a9a9;
+}
+
+.my-doctor-middle-list li s *{
+    font-size:14px;
+    color:#a9a9a9;
+}
+.my-doctor-middle-list li span{
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: auto;
+}
+.my-doctor-middle-list li span img{
+    width: 100%;
+}
+.my-doctor-middle-list li p{
+    font-size:15px;
+    color:#717171;
+    margin-top:12px;
+}
+.my-doctor-middle-list{
+    padding: 16px 12px 20px;
+}
+.my-doctor-middle-title a{
+    position: absolute;
+    right:12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width:30px;
+    height:33px;
+    background: url('../../../images/common/icon_iphone_400@2x.png') no-repeat center;
+    background-size: 100%;
+}
+.my-doctor-middle-title span::before{
+    content: '?';
+    background:#ff9933;
+    width:18px;
+    height:18px;
+    border-radius:100%;
+    color: #fff;
+    font-size:12px;
+    text-align: center;
+    display: inline-block;
+    line-height: 18px;
+}
+.my-doctor-middle-title span{
+    display: inline-block;
+    margin-left:4px;
+}
+
+.my-doctor-middle-title h3 {
+    font-size: 16px;
+}
+
+.my-doctor-middle-title {
+    line-height: 18px;
+    padding: 16px 0;
+    color: #474747;
+    margin-left: 12px;
+    position: relative;
+}
+
+.my-doctor-bottom .my-doctor-middle-title a{
+    background:#7ad07f;
+    border-radius:5px;
+    color: #fff;
+    font-size: 14px;
+    width:70px;
+    height:30px;
+    text-align: center;
+    line-height: 30px;
+}
+
+/*康复包*/
+.package-content{
+    padding: 16px 12px 20px;
+}
+.package-img{
+    width:48px;
+    height:48px;
+    border:1px solid #a8dcab;
+    background: url('../../../images/common/img_doctor_nav_kffwb@2x.png') #e4f6e5 center no-repeat;
+    background-size: 100%;
+}
+
+.package-text{
+    padding-left:12px;
+}
+
+.package-text > *{
+    display: block;
+}
+.package-text span{
+    font-size:16px;
+    color:#474747;
+    margin-top:4px;
+}
+.package-text s{
+    font-size:12px;
+    color:#a9a9a9;
+    margin-top:12px;
+}
+

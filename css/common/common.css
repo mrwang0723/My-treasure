@@ -1,0 +1,925 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    list-style: none;
+    resize: none;
+    outline: none;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+    color: #666;
+    word-break: break-all;
+    border-radius: 0;
+    line-height: 1;
+    border:0;
+    background:none;
+}
+
+body, html {
+    overflow-y: scroll;
+    -webkit-text-size-adjust: 100%;/*关闭自动调整字体*/
+    /*-webkit-overflow-scrolling: touch;*/
+    overflow-x: hidden;
+    line-height: 1;
+}
+
+input[type=text], input[type=password], input[type=button],button {
+    outline: none;
+    border:0;
+    background: none;
+}
+
+.main-box > * {
+    width: 100%;
+}
+
+.main-box {
+    padding: 0 12px;
+    background-size: 100%;
+    min-height: 100%;
+}
+
+/*输入框*/
+.user-input li {
+    position: relative;
+    margin-top: 8px;
+    border-bottom: 1px solid #e1e1e1;
+}
+.user-input li::before {
+    color: #bbb;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    font-size: 20px;
+}
+
+.user-input li span {
+    visibility: hidden;
+    text-align: center;
+    line-height: 14px;
+    color: #fff;
+    position: absolute;
+    right: 44px;
+    top: 50%;
+    width: 22px;
+    height: 22px;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+}
+
+.user-input li span::before {
+    font-size: 16px;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: rgba(0, 0, 0, .3);
+    border-radius: 100%;
+}
+
+.user-input li i {
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    background: none;
+    border: 0;
+}
+
+.user-input li i::before {
+    font-size: 24px;
+    color: #bbb;
+    left: auto;
+    right: 0;
+}
+
+.user-input li input {
+    padding-left:24px;
+    font-size: 16px;
+    background: none;
+    width: 80%;
+    height: 50px;
+    border: 0;
+}
+
+input::-webkit-input-placeholder {
+    color: #ccc;
+    opacity: 1;
+}
+
+li.user-code button{
+    right: 0;
+    position: absolute;
+    background: #7ad07f;
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 40px;
+    color: #fff;
+    border: 0;
+}
+.user-code .icon-small-close{
+    right: auto;
+    left: 100px;
+}
+li.user-code::before{
+    font-size:18px;
+}
+.btn-submit button {
+    background: #7ad07f;
+    border-radius: 5px;
+    width: 100%;
+    height: 48px;
+    color: #fff;
+    border: 0;
+    margin-top: 32px;
+    font-size: 20px;
+}
+.btn-submit button[disabled=disabled]{
+    background: #ddd !important;
+}
+li.user-code input{
+    right:auto;
+    left:0;
+    text-align: left!important;
+}
+.login-prompt {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #717171;
+    letter-spacing: -0.01px;
+}
+
+button[type=button]:disabled {
+    background: #ddd;
+}
+
+/*button[type=button]:active{
+    background-color:#61A665;
+}*/
+.icon-login-loading,.icon-login-sigh::before {
+    display: block;
+    margin: auto;
+    text-align: center;
+    color: #fff;
+    position: initial;
+    height: 50px;
+    width: 50px;
+    font-size: 50px;
+    border-radius: 100%;
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+    line-height: 1;
+}
+.icon-login-loading{
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+}
+
+
+/*提示蒙版*/
+.mask-box{
+    display: none;
+}
+.mask-bg{
+    background: rgba(0,0,0,.4);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 998;
+    transition:all .2s;
+    -webkit-transition:all .2s;
+    opacity: 0;
+}
+.mask-content,.select-prompt-content{
+    transition: all .2s;
+    -webkit-transition: all .2s;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 999;
+    -webkit-transform: translate(-50%, -50%) scale(1.1);
+    transform: translate(-50%, -50%)  scale(1.1);
+    background: #fff;
+}
+.mask-box button{
+    background:#7ad07f;
+    border-radius:100px;
+    width:124px;
+    height:40px;
+    color: #fff;
+    font-size: 16px;
+}
+
+/*选择提示框*/
+.select-prompt-box{
+    position: fixed;
+    z-index: 999;
+}
+
+.select-prompt-content{
+    width: 66%;
+    background: #fff;
+    border-radius:10px;
+}
+.select-prompt-content p{
+    line-height: 60px;
+    text-align: center;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+}
+.prompt-btn-box{
+    display: flex;
+    border-top:1px solid #eee;
+    width: 100%;
+}
+.prompt-btn-box li{
+    position: relative;
+    height: 44px;
+    line-height: 44px;
+    font-size: 16px;
+    flex-grow: 1;
+    text-align: center;
+    color: #0f81ff;
+}
+.prompt-btn-box li:first-child::before{
+    content: '';
+    /*position: absolute;*/
+    border-right:1px solid #eee;
+    right: 0;
+    top: 50%;
+    float: right;
+    height: 100%;
+}
+
+/*选择列表页*/
+.edit-list-box{
+    background: #fff;
+    height: 100%;
+    overflow: hidden;
+    left:0;
+    top:0;
+    width:100%;
+    box-sizing: border-box;
+    -webkit-transition: all .3s;
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+}
+
+/*带搜索的列表*/
+.search-box {
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    background: #ddd;
+    padding: 8px;
+    z-index: 999;
+}
+
+.search-box li {
+    margin: 0;
+    border: 0;
+}
+
+.search-box li::before {
+    font-size: 14px;
+    color: #ddd;
+    left: .06rem;
+}
+
+.search-box li input {
+    height: .3rem;
+    background: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width:2.96rem;
+    display: block;
+}
+.edit-list{
+    padding: 0 12px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.select-search-box{
+    padding-top: .46rem;
+}
+
+.edit-list li{
+    height: 50px;
+    line-height:50px;
+    font-size:16px;
+    color:#474747;
+    letter-spacing:-0.39px;
+    text-align:center;
+    border-bottom: 1px solid #e1e1e1;
+}
+.edit-list li:last-child{
+    border-bottom:0;
+}
+
+.search-hint{
+    display: none;
+}
+
+
+
+/*表单输入框item*/
+.input-form-box{
+    background: #fff;
+}
+.input-form-box li p{
+    font-size: 16px;
+    line-height: 50px;
+}
+.input-text{
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    margin-left:12px;
+    border-bottom:1px solid #e1e1e1;
+}
+.input-form-box .input-text:last-child{
+    border-bottom:0;
+}
+.input-text > *{
+    display: block;
+    position: relative;
+}
+.input-text label{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+.input-text label input{
+    text-align: right;
+    right:0;
+    top: 0;
+    height: 100%;
+    width: 70%;
+    margin-right: 30px;
+    box-sizing: border-box;
+    position: absolute;
+}
+.input-text label input[type=button]{
+    color: #a9a9a9;
+    font-size: 16px;
+}
+.input-text input[type=date]{
+    z-index: 999;
+}
+.input-text span{
+    position: absolute;
+    height: 100%;
+    width:14px;
+    right: 8px;
+    color: #c7c7c7;
+    font-size: 14px;
+}
+
+/*输入框内单选框*/
+.input-select p:last-of-type {
+    -webkit-box-pack: end;
+    display: -webkit-box;
+    -webkit-box-flex: 1;
+    padding-right: 12px;
+}
+.input-select label {
+    position: relative;
+    width: 86px;
+    display: block;
+}
+.input-select span {
+    display: block;
+    position: relative;
+    line-height: 50px;
+    padding-right: 30px;
+    color: #a9a9a9;
+    text-align: right;
+    width: 100%;
+    right: 0;
+    box-sizing: border-box;
+}
+.input-select span::before {
+    font-size: 24px;
+    right: 0;
+    top: 52%;
+    left: auto;
+}
+.input-select input {
+    display: block;
+    -webkit-box-flex: 1;
+    text-align: right;
+    height: 50px;
+    border: 0;
+    opacity: 0;
+    font-size: 16px;
+    width:100% !important;
+    margin: 0 !important;
+}
+.input-select input:checked + span::before, .input-select input:checked + span {
+    color: #0bb20c;
+}
+
+/*文本框编辑页面*/
+.edit-text-box{
+    position: fixed;
+    height: 100%;
+    width:100%;
+    top:0;
+    left:0;
+    -webkit-transform: translate(100%,0);
+    -moz-transform: translate(100%,0);
+    -ms-transform: translate(100%,0);
+    -o-transform: translate(100%,0);
+    transform: translate(100%,0);
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    background: #e9e9e9;
+    z-index: 9999;
+}
+
+.edit-text-box p{
+    margin-top:8px;
+    line-height: 40px;
+    font-size: 15px;
+    text-indent: 14px;
+    color: #777;
+}
+.edit-text-box label{
+    height: 50px;
+    background: #fff;
+    position: relative;
+    display: block;
+    width: 100%;
+}
+.edit-text-box textarea,.edit-text-box input{
+    position: absolute;
+    width:100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding:0 14px;
+    box-sizing: border-box;
+    font-size:16px;
+    border: 0;
+}
+.btn-feedback{
+
+}
+.edit-text-box label span::before{
+    font-size: 16px;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: rgba(0, 0, 0, .3);
+    border-radius: 100%;
+}
+.edit-text-box label span{
+    visibility: hidden;
+    text-align: center;
+    line-height: 14px;
+    color: #fff;
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    width: 22px;
+    height: 22px;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    z-index: 99;
+}
+
+
+/*用户头像栏*/
+.input-head{
+    background: #fff;
+    height: 70px;
+    line-height: 70px;
+    padding-left:12px;
+    padding-right: 30px;
+    border-bottom:10px solid #eee;
+    display: -webkit-box;
+    position: relative;
+    overflow: hidden;
+}
+.input-head >p{
+    line-height: 70px;
+    font-size:16px;
+}
+.input-head::before{
+    left: auto;
+    right: 8px;
+    color: #c7c7c7;
+    font-size: 14px;
+}
+.input-head s {
+    height: 52px;
+    width: 52px;
+    border-radius: 100%;
+    overflow: hidden;
+    display: inline-block;
+    position: absolute;
+    right: 30px;
+    top:50%;
+    -webkit-transform: translate(0,-50%);
+    -moz-transform: translate(0,-50%);
+    -ms-transform: translate(0,-50%);
+    -o-transform: translate(0,-50%);
+    transform: translate(0,-50%);
+    background-size:100%;
+}
+.input-head s img{
+    position: relative;
+    left: 50%;
+    top: 50%;
+    display: block;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+.input-head input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+}
+
+/*颜色#999字号14px*/
+.c-9-14{
+    color: #999;
+    font-size: 14px;
+}
+
+/*上边框1px 颜色e1e1e1e*/
+.t-1-e1{
+    border-top: 1px solid #e1e1e1;
+}
+
+.t-1-e{
+    border-top: 1px solid #eee;
+}
+
+/*下边框1px 颜色e1e1e1e*/
+.b-1-e1{
+    border-bottom: 1px solid #e1e1e1;
+}
+
+/*背景色e1*/
+.bc-e1{
+    background-color: #e1e1e1;
+}
+
+/*颜色ff8833 14号*/
+.c-8833-14{
+    font-size:14px;
+    color:#ff8833;
+}
+
+/*背景白色*/
+.bc-f{
+    background-color: #fff;
+}
+
+/*背景色eee*/
+.bc-e{
+    background: #eee;
+}
+
+/*padding-bottom 48*/
+.p-d-48{
+    padding-bottom:48px;
+}
+.select-form-box{
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+.select-form-box .select-form-item{
+    position: relative;
+}
+.select-form-box .select-form-item label{
+    display: block;
+}
+.select-form-box .select-form-item label input{
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height:100%;
+}
+.select-form-box .select-form-item span{
+    display: block;
+    line-height: 48px;
+}
+
+.select-form-box .select-form-item span::before{
+    left:auto;
+    right:12px;
+    color:#0bb20c;
+    font-size:20px;
+}
+
+.show {
+    transform: translateX(0)!important;
+    -webkit-transform: translateX(0)!important;
+}
+
+
+
+
+/*图文结合*/
+.image-text-box li{
+    display: -webkit-box;
+}
+
+.image-text-box li>*{
+    display: block;
+}
+
+.image-text-box li::before{
+    left: auto;
+    right:0;
+    color:#c7c7cc;
+    font-size: 14px;
+}
+
+
+/*注册成功提示页面*/
+
+/*默认医生界面*/
+.succeed-box {
+    padding: 0 12px;
+    text-align: center;
+}
+
+.succeed-box > * {
+    display: block;
+}
+
+.succeed-box h3 {
+    font-size: 20px;
+    color: #474747;
+    letter-spacing: 0;
+    margin-top: 120px;
+}
+
+.succeed-box span {
+    margin-top: 30px;
+}
+
+.succeed-box span::before {
+    position: inherit;
+    font-size: 60px;
+    color: #02befd;
+    width: 50px;
+    height: 50px;
+}
+
+.succeed-box button {
+    background: #02befd;
+    border-radius: 5px;
+    width: 100%;
+    height: 48px;
+    font-size: 20px;
+    margin-top: 50px;
+    color: #fff;
+}
+
+.succeed-box p {
+    font-size: 14px;
+    color: #717171;
+    letter-spacing: -0.01px;
+    margin-top: 14px;
+    line-height: 1.2;
+}
+
+.succeed-box .btn-skip {
+    text-align: right;
+    margin-top: 12px;
+}
+
+.succeed-box .btn-skip a {
+    display: inline-block;
+    font-size: 14px;
+    color: #a9a9a9;
+    letter-spacing: -0.01px;
+    line-height: 30px;
+}
+
+/*注册成功用户页面*/
+.succeedUserBox span::before{
+    color: #0aba07;
+}
+.succeedUserBox button{
+    background: #0aba07;
+}
+/*模仿原生开关*/
+label.btn-off{
+    position: absolute;
+    right: 12px;
+    left: auto ;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 52px !important;
+    height: 32px !important;
+}
+
+.weui-switch-cp__input:checked ~ .weui-switch-cp__box, .weui-switch:checked {
+    border-color: #04be02;
+    background-color: #04be02;
+}
+
+.weui-switch-cp__box {
+    display: block;
+}
+
+.weui-switch-cp__box {
+    position: relative;
+    width: 52px;
+    height: 32px;
+    border: 1px solid #dfdfdf;
+    outline: 0;
+    border-radius: 16px;
+    box-sizing: border-box;
+    background-color: #dfdfdf;
+    -webkit-transition: background-color .1s, border .1s;
+    transition: background-color .1s, border .1s;
+}
+
+.weui-switch-cp__input:checked ~ .weui-switch-cp__box:before, .weui-switch:checked:before {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.weui-switch-cp__box:before, .weui-switch:before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #fdfdfd;
+    -webkit-transition: -webkit-transform .35s cubic-bezier(.45, 1, .4, 1);
+    transition: -webkit-transform .35s cubic-bezier(.45, 1, .4, 1);
+    transition: transform .35s cubic-bezier(.45, 1, .4, 1);
+    transition: transform .35s cubic-bezier(.45, 1, .4, 1), -webkit-transform .35s cubic-bezier(.45, 1, .4, 1);
+}
+.weui-switch-cp__input:checked ~ .weui-switch-cp__box:after, .weui-switch:checked:after {
+    -webkit-transform: translateX(20px);
+    transform: translateX(20px);
+}
+.weui-switch-cp__box:after, .weui-switch:after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+    -webkit-transition: -webkit-transform .35s cubic-bezier(.4, .4, .25, 1.35);
+    transition: -webkit-transform .35s cubic-bezier(.4, .4, .25, 1.35);
+    transition: transform .35s cubic-bezier(.4, .4, .25, 1.35);
+    transition: transform .35s cubic-bezier(.4, .4, .25, 1.35), -webkit-transform .35s cubic-bezier(.4, .4, .25, 1.35);
+}
+
+.hidden{
+ display: none ;
+}
+
+/*触摸反馈*/
+.touch-feedback{
+
+}
+
+input.input-pop-text{
+    color: #a9a9a9!important;
+}
+
+
+.doc-bc{
+    background-color:#2ab8fa !important;
+}
+button.doc-bc[type=button]:disabled{
+    background-color:#ddd !important;
+}
+.c-47{
+    color: #474747 !important;
+}
+
+
+/*横屏提示文字*/
+.rotate-screen-pop{
+    left:0;
+    top:0;
+    bottom:0;
+    right:0;
+    background: #fff;
+    color: #555;
+    position: fixed;
+    z-index: 999999999;
+}
+.rotate-screen-pop h3{
+    position: absolute;
+    left:50%;
+    top:40%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+.rotate-screen-pop h3 p{
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top:10px
+}
+.rotate-screen-pop h3 span{
+    display: block;
+    font-size: 100px;
+    height: 100px;
+}
+.rotate-screen-pop h3 span::before{
+    color: #ce3c39;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/*底部滑出框*/
+.black-bg{
+    left: 0;
+    top:0;
+    bottom:0;
+    right:0;
+    background:rgba(0,0,0,.6);
+    position: fixed;
+    z-index: 89;
+}
+.bottom-roll-out-content{
+    position: fixed;
+    left: 0;
+    right:0;
+    bottom:0;
+    top:auto;
+    background: #fff;
+    z-index: 99;
+}
+

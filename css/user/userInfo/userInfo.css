@@ -1,0 +1,356 @@
+/*个人信息列表*/
+body {
+    background: #eee;
+}
+
+.user-info-box {
+    background: #fff;
+}
+
+.user-info-item li input,.user-info-item li button {
+    -webkit-box-flex: 1;
+    text-align: right;
+    font-size: 16px;
+    border: 0;
+    background: none;
+}
+.user-info-item li s {
+    color: #474747;
+    font-size: 16px;
+}
+
+.user-info-item {
+    border-bottom: 10px solid #eee;
+    padding: 0 12px;
+}
+
+.user-info-item li {
+    display: -webkit-box;
+    border-bottom: 1px solid #e1e1e1;
+    padding-right: 30px;
+    margin-right: -12px;
+}
+
+.user-info-item li:last-child {
+    border: 0;
+}
+
+.user-info-item li::before {
+    left: auto;
+    right: 12px;
+    -webkit-transform: translateY(-50%) rotate(180deg);
+    transform: translateY(-50%) rotate(180deg);
+    color: #c7c7c7;
+    font-size: 14px;
+}
+
+.user-info-item li > * {
+    display: block;
+    line-height: 52px;
+    height: 52px;
+}
+.user-info-item li span, .user-date input {
+    flex-grow: 1;
+    text-align: right;
+    font-size: 16px;
+}
+
+.user-date input {
+    -webkit-appearance: none;
+    border: 0;
+}
+
+.user-date input[name=user-date] {
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+}
+
+.user-info-item li i {
+    line-height: 58px;
+    color: #ff8833;
+    margin-left: 4px;
+}
+
+.user-header li {
+    height: 70px;
+    line-height: 70px;
+}
+
+.user-header li s{
+    line-height: 70px;
+}
+.user-header li input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+}
+
+.user-header li p {
+    height: 52px;
+    width: 52px;
+    background: rgba(0, 0, 0, .3);
+    border-radius: 100%;
+    overflow: hidden;
+    display: inline-block;
+    background: #eee no-repeat center 100%;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    border:1px solid #ccc;
+}
+.user-header li p img{
+   position: relative;
+    display: block;
+    left:50%;
+    top:50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+/*编辑页面*/
+/*修改昵称、身份证号、紧急联系人、紧急联系人电话*/
+.edit-box .btn-submit button {
+    height: 58px;
+    border-radius: 0;
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+    left: 0;
+}
+
+.edit-name-box p {
+    font-size: 12px;
+    color: #a9a9a9;
+    text-align: left;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 12px;
+}
+
+.edit-name-input li {
+    background: #ffffff;
+    height: 50px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border: 0;
+}
+
+.edit-name-input li input {
+    padding-left: 12px;
+}
+
+/*编辑身高/体重页面*/
+.edit-height-box {
+    margin-top: 1rem;
+}
+
+.edit-weight-box {
+    text-align: center;
+}
+
+.person-img {
+    padding-top: .42rem;
+}
+
+.person-img img {
+    width: .72rem;
+    display: block;
+    margin: auto;
+}
+
+.edit-show-num {
+    font-size: .14rem;
+    color: #474747;
+    letter-spacing: -0.34px;
+    margin-top: .5rem;
+    height: .36rem;
+    line-height: .36rem;
+}
+
+.edit-height-box .edit-show-num {
+    margin-top: 0;
+}
+
+.edit-height-box .edit-set-roll {
+    margin-top: 0;
+}
+
+.edit-show-num s {
+    font-size: .36rem;
+    color: #6ece74;
+    letter-spacing: -0.87px;
+}
+
+.edit-set-roll {
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    margin-top: .2rem;
+}
+
+.edit-set-roll div {
+    text-align: center;
+    -webkit-box-flex: 1;
+}
+
+.edit-set-roll div s {
+    height: .8rem;
+    display: block;
+}
+
+.edit-set-roll div s::before {
+    font-size: .24rem;
+    color: #ccc;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    left: 50%;
+}
+
+div.edit-set-right s::before {
+    -webkit-transform: rotate(180deg) translate(-50%, -50%);
+    transform: rotate(180deg) translate(-50%, -50%);
+    transform-origin: top;
+    -webkit-transform-origin: top;
+    left: 0;
+}
+
+.edit-set-roll div p {
+    font-size: .12rem;
+    color: #a9a9a9;
+    letter-spacing: -0.29px;
+}
+
+div.edit-set-content {
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.11);
+    border-radius: 5px;
+    width: 2.48rem;
+    height: .78rem;
+    margin: 0 .06rem;
+}
+
+div.edit-set-content-num-box {
+    overflow: hidden;
+    width: auto;
+}
+
+.edit-set-content-num {
+    width: 30rem;
+    height: .4rem;
+    line-height: .4rem;
+    margin-left: .975rem;
+    transform: translateX(0px);
+}
+
+.edit-set-content-num li {
+    float: left;
+    width: .7rem;
+    text-align: center;
+    font-size: .12rem;
+    line-height: .4rem;
+}
+
+div.edit-set-content-scale {
+    width: 100%;
+    height: .34rem;
+    background: url('../../../images/userInfo/edit-set-weight.png') no-repeat center;
+    background-size: 95%;
+}
+
+/*编辑身高*/
+div.edit-set-content p {
+    margin-top: .08rem;
+}
+
+.edit-height-box {
+    display: -webkit-box;
+    -webkit-box-pack: center;
+}
+
+.edit-height-left {
+    width: .89rem;
+}
+
+.edit-height-box .edit-set-content {
+    height: 2.48rem;
+    width: .78rem;
+    margin: .06rem 0;
+}
+
+.edit-height-box .edit-set-roll .alt-text {
+    font-size: .12rem;
+    color: #a9a9a9;
+    margin: 0 .12rem;
+    line-height: 3.8rem;
+}
+
+.edit-height-box .edit-set-content {
+    overflow: hidden;
+}
+
+.edit-height-box .edit-set-content-num-box {
+    display: -webkit-box;
+}
+
+.edit-height-box .edit-set-content-scale {
+    background: url('../../../images/userInfo/edit-set-height.png') no-repeat;
+    background-size: auto 99%;
+    height: 2.4rem;
+    margin-top: .06rem;
+    margin-left: .05rem;
+    width: .2rem;
+}
+
+.edit-height-box .edit-set-content-num {
+    -webkit-box-flex: 1;
+    height: 30rem;
+    width: auto;
+    margin-top: .88rem;
+    margin-left: 0;
+}
+
+.edit-height-box .edit-set-content-num li {
+    float: none;
+    width: 100%;
+    height: .7rem;
+    line-height: .7rem;
+}
+
+.edit-height-box .edit-set-roll div s {
+    height: .4rem;
+}
+
+.edit-height-box .edit-height-right s::before {
+    font-size: .2rem;
+    transform-origin: center;
+    -webkit-transform-origin: center;
+}
+
+.edit-height-box .edit-set-height-right s::before {
+    -webkit-transform: rotate(90deg) translate(-50%, 50%);
+    transform: rotate(90deg) translate(-50%, 50%);
+    left: 50%;
+}
+
+.edit-height-box .edit-set-height-left s::before {
+    top: 50%;
+    left: 0;
+    transform: rotate(-90deg) translate(50%, 150%);
+}
